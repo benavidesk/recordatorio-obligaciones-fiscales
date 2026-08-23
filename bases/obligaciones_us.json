@@ -1,0 +1,62 @@
+{
+  "pais": "Estados Unidos",
+  "codigo": "US",
+  "moneda": "USD",
+  "id_contribuyente": "EIN / SSN / ITIN",
+  "nota": "Base de obligaciones fiscales de Estados Unidos (federal). Fuente: IRS. Aunque el idioma oficial es inglés, incluido por la enorme comunidad hispanohablante que tributa en EE.UU. Impuestos federales clave: renta (Form 1040, 15-abr), nómina (Form 941/940), retenciones, pagos estimados. Estados tienen impuestos propios adicionales. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "El vencimiento federal del impuesto sobre la renta es el 15 de abril. Los pagos estimados son trimestrales (15 de abr, jun, sep, ene).",
+  "obligaciones": [
+    {
+      "id": "US-1040",
+      "nombre": "Income Tax - Declaración Federal Anual (Form 1040)",
+      "formulario": "Form 1040",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del impuesto federal sobre la renta de personas físicas (Form 1040). Vence el 15 de abril."
+    },
+    {
+      "id": "US-ESTIMADOS",
+      "nombre": "Estimated Tax - Pagos Estimados Trimestrales",
+      "formulario": "Form 1040-ES",
+      "tipo": "trimestral",
+      "descripcion": "Pagos estimados trimestrales del impuesto (Form 1040-ES) para quienes no tienen retención. 15 abr/jun/sep y ene siguiente."
+    },
+    {
+      "id": "US-941",
+      "nombre": "Payroll - Declaración Trimestral de Nómina (Form 941)",
+      "formulario": "Form 941",
+      "tipo": "trimestral",
+      "descripcion": "Declaración trimestral de impuestos de nómina (retención de empleados + impuestos del empleador)."
+    },
+    {
+      "id": "US-940",
+      "nombre": "Payroll - Impuesto Federal de Desempleo (Form 940)",
+      "formulario": "Form 940",
+      "tipo": "anual",
+      "descripcion": "Formulario anual del impuesto federal de desempleo (FUTA). Vence el 31 de enero."
+    },
+    {
+      "id": "US-RETENCIONES",
+      "nombre": "Retenciones de salarios (W-2) y de no-empleados (1099)",
+      "formulario": "W-2 / 1099",
+      "tipo": "anual",
+      "descripcion": "Entrega/reporte anual de W-2 (empleados) y 1099 (contratistas) y resúmenes al SSA/IRS. Enero/febrero."
+    },
+    {
+      "id": "US-W2-1099",
+      "nombre": "Entrega de Formularios W-2 y 1099 a empleados/contratistas",
+      "formulario": "W-2 / 1099 entrega",
+      "tipo": "anual",
+      "descripcion": "Entregar copias de W-2/1099 a los trabajadores antes del 31 de enero."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {},
+    "anual_fijo": {
+      "US-1040": "04-15",
+      "US-940": "01-31"
+    },
+    "dias_por_calendario_oficial": ["US-ESTIMADOS", "US-941", "US-RETENCIONES", "US-W2-1099"],
+    "nota": "Form 1040 anual 15-abr (fijo). Form 940 31-ene. Pagos estimados trimestrales y Form 941 según el trimestre (día 15 del mes siguiente al cierre del trimestre). Verificar irs.gov."
+  }
+}

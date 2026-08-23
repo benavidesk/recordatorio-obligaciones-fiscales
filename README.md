@@ -56,11 +56,12 @@ Las fechas pueden moverse si caen en fin de semana o asueto, y cambian cada año
 país. Este software es una guía de apoyo, no sustituye el asesoramiento contable.
 
 ## ✔️ Estado
-- **18 países, TODOS los hispanohablantes del mundo** con base lista para leer:
-  - **América (16):** El Salvador · MH | Guatemala · SAT | Honduras · SAR | Nicaragua · DGI
+- **19 países** con base lista para leer:
+  - **América Hispana (16):** El Salvador · MH | Guatemala · SAT | Honduras · SAR | Nicaragua · DGI
     Panamá · DGI-MEF | Costa Rica · DGT | Rep. Dominicana · DGII | México · SAT
     Colombia · DIAN | Perú · SUNAT | Chile · SII | Argentina · ARCA
     Ecuador · SRI | Uruguay · DGI | Paraguay · SET | Bolivia · SIN
+  - **América (no hispana, por su comunidad hispanohablante):** Estados Unidos · IRS (Form 1040)
   - **Europa (1):** España · AEAT
   - **África (1):** Guinea Ecuatorial · Ministerio de Hacienda
 - **Notas:** Argentina: AFIP ahora se llama **ARCA** (2026). Venezuela y Cuba no incluidos

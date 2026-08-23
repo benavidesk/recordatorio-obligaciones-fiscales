@@ -98,6 +98,8 @@ def main():
         entidad = "Agencia Estatal de Administración Tributaria (AEAT)"
     elif data["codigo"] == "GQ":
         entidad = "Ministerio de Hacienda de Guinea Ecuatorial"
+    elif data["codigo"] == "US":
+        entidad = "Internal Revenue Service (IRS)"
     else:
         entidad = "la autoridad fiscal oficial"
 
