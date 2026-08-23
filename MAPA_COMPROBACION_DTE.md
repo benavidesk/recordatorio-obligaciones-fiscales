@@ -31,6 +31,19 @@ La **comprobación multi-país es viable y mucho más simple que la descarga**, 
 - Guatemala SAT FEL: `https://portal.sat.gob.gt/portal/efactura/` (y apps `gob.sat.fel`)
 - El Salvador DTE: `https://factura.gob.sv/`
 
+## 🔑 Recurso CLAVE: esquema oficial FEL de Guatemala (XSD/catálogos)
+- **Repo GitHub:** `https://github.com/notificacioneselectfel/Catalogo-FEL`
+  - Descripción: "Esquema y catálogos - FEL" (16★, 3 forks, actualizado).
+  - **Carpeta `XSD/`:** contiene los **esquemas XML oficiales** de los DTEs de Guatemala
+    (facturas, anulaciones, complementos: Cambiaria, Exportaciones, Medios de Pago,
+    Retenciones, Turismo Pasaje, Traslado Mercancías, etc.).
+  - **Carpeta `Catalogos/`:** catálogos de códigos oficiales del FEL.
+  - **Uso:** base para **validar/parsear** los XML de DTEs guatemaltecos al integrar la
+    comprobación (como parte del desarrollo de Guatemala).
+  - **Nota honesta:** es la especificación (XSD/catálogos), NO el endpoint de consulta
+    pública de la SAT. La comprobación en sí requiere conectar el portal/consulta de la SAT
+    (análogo a El Salvador).
+
 ## Notas (no declarar en la interfaz pública)
 - Para el usuario final de DescargarFacturas, se describe como "**verificación con Hacienda**" (no "API").
 - La comprobación multi-país se integra por país, como se hizo con El Salvador; cada país puede requerir ajustes del endpoint/parámetros de su consulta pública.
