@@ -1,0 +1,5 @@
+{
+  "pais_por_defecto": "SV",
+  "dias_aviso": 7,
+  "nota": "Configuracion de los avisos automaticos. 'pais_por_defecto' es el pais que se revisa por defecto en los recordatorios. Cambialo (ej. 'GT', 'MX', 'US'...) segun el pais que uses. Con 'all' se revisan todos."
+}
