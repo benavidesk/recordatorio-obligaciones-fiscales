@@ -44,6 +44,26 @@ La **comprobación multi-país es viable y mucho más simple que la descarga**, 
     pública de la SAT. La comprobación en sí requiere conectar el portal/consulta de la SAT
     (análogo a El Salvador).
 
+## 📄 Documento Técnico Informático SAT FEL (v1.2) — especificación del API
+- **Archivo local:** `C:\Users\benav\Downloads\Documento-Tecnico-Servicios-SAT.pdf`
+- **Qué es:** "Documento Técnico Informático para **Certificadores** del Régimen FEL" (Acuerdo 13-2018, v1.2).
+- **Endpoints de desarrollo (ambiente `desa`):**
+  - Recepción DTE: `https://api.desa.sat.gob.gt/postFactura`
+  - Anulación: `https://api.desa.sat.gob.gt/postAnulacionDTE`
+  - Autenticación (token 60 min): `https://api.desa.sat.gob.gt/getToken`
+  - Chequeo: `https://api.desa.sat.gob.gt/test`
+  - XSD oficiales: `https://cat.desa.sat.gob.gt/xsd/alfa/GT_Documento-0.1.0.xsd` (+ complementos)
+  - Catálogos JSON: `https://cat.desa.sat.gob.gt/catalogos/alfa` (frases, unidades, mensajes/errores)
+- **Firma:** Xades-Bes, RSA + SHA-256; DTE = XML con firma de emisión + firma de certificación (UUID v4).
+- **⚠️ NOTA HONESTA (importante):** este documento es para **CERTIFICADORES** (emisores autorizados),
+  describe cómo **ENVIAR/emitir/anular DTEs a la SAT** (con credenciales de certificador que otorga la SAT).
+  **NO** es la **comprobación/consulta** de validez de un DTE por un contador normal.
+  **No contiene un endpoint público de "consulta de DTE"** para verificar autenticidad (lo que DescargarFacturas
+  necesita para el modelo como El Salvador). Si se quisiera desarrollar un sistema de facturación/certificador
+  en Guatemala, este doc es la referencia técnica; pero la **comprobación multi-país** requiere el endpoint de
+  consulta pública (a localizar en el portal SAT).
+- **Archivo clave para referencia futura** si se desarrolla emisión/certificación FEL.
+
 ## Notas (no declarar en la interfaz pública)
 - Para el usuario final de DescargarFacturas, se describe como "**verificación con Hacienda**" (no "API").
 - La comprobación multi-país se integra por país, como se hizo con El Salvador; cada país puede requerir ajustes del endpoint/parámetros de su consulta pública.
