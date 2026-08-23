@@ -40,6 +40,17 @@ ObligacionesFiscales/
 3. Corre `python recordatorios.py --pais <CODIGO>`.
 No se toca el código del motor.
 
+### Recordatorios automáticos (tarea programada diaria)
+```bat
+ejecutar_avisos.bat   → corre los avisos (tarea 'AvisosObligacionesFiscales', diaria 08:00)
+py avisos_automaticos.py                    → revisa el país de config.json (por defecto)
+py avisos_automaticos.py --pais all         → selector: todos los países
+py avisos_automaticos.py --pais MX          → selector: un país específico
+```
+- Editá `config.json` (pais_por_defecto, dias_aviso) para cambiar el país que se avisa.
+- El aviso automático **revisa el país configurado** (no todos), y `--pais all`/`--pais XX` es el **selector** para ampliar.
+- Si hay vencimientos ≤ N días → muestra una **notificación** (popup) de Windows; si no, corre en silencio.
+
 ## 🤝 Contribuye / Dona
 - **¿Eres contador o profesional?** Puedes **corregir/ampliar** la base de tu país
   (agrega obligaciones que falten, ajusta fechas) y compartirla. El código es abierto.
