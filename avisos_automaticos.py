@@ -11,86 +11,67 @@ Para ver uno especifico sin cambiar config:
 
 Este script lo ejecuta una TAREA PROGRAMADA diaria.
 """
-import sys, os, json, glob, argparse
-from datetime import date, timedelta
+import os, json, argparse
+from datetime import date
+
+from util_fiscal import cargar_archivo, listar_paises, cargar_pais, calcular_vencimientos_ventana
 
 RUTA_BASE = os.path.dirname(os.path.abspath(__file__))
-BASES_DIR = os.path.join(RUTA_BASE, "bases")
 CONFIG_FILE = os.path.join(RUTA_BASE, "config.json")
 
-def cargar_archivo(path):
-    try:
-        with open(path, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return None
-
-def pais_por_defecto():
-    cfg = cargar_archivo(CONFIG_FILE)
-    if cfg and cfg.get("pais_por_defecto"):
-        return str(cfg["pais_por_defecto"]).upper()
-    return "SV"
-
-def dias_por_defecto():
-    cfg = cargar_archivo(CONFIG_FILE)
-    if cfg and cfg.get("dias_aviso"):
-        return int(cfg["dias_aviso"])
-    return 7
-
-def vencimiento_cercano(oblig, data, hoy, dias_ventana):
-    regla = data.get("reglas_vencimiento", {})
-    did = oblig["id"]
-    tipo = oblig.get("tipo")
-    dia = (regla.get("dias") or {}).get(did)
-    if dia and dia > 0:
-        for m in [hoy.month, (hoy.month % 12) + 1]:
-            try:
-                f = date(hoy.year, m, dia)
-            except:
-                continue
-            if hoy <= f <= hoy + timedelta(days=dias_ventana):
-                return f
-    fijo = (regla.get("anual_fijo") or {}).get(did)
-    if fijo:
-        try:
-            mm, dd = map(int, fijo.split("-"))
-            f = date(hoy.year, mm, dd)
-            if hoy <= f <= hoy + timedelta(days=dias_ventana):
-                return f
-            f2 = date(hoy.year + 1, mm, dd)
-            if hoy <= f2 <= hoy + timedelta(days=dias_ventana):
-                return f2
-        except:
-            pass
-    return None
-
-def listar_paises():
-    paises = []
-    for archivo in sorted(glob.glob(os.path.join(BASES_DIR, "obligaciones_*.json"))):
-        data = cargar_archivo(archivo)
-        if data and data.get("codigo"):
-            paises.append((data["codigo"], data.get("pais","")))
-    return paises
+def leer_config():
+    """Devuelve el config como dict, con valores por defecto si faltan."""
+    cfg = cargar_archivo(CONFIG_FILE) or {}
+    return {
+        "pais_por_defecto": str(cfg.get("pais_por_defecto", "SV")).upper(),
+        "dias_aviso": int(cfg.get("dias_aviso", 7)),
+        "hora_aviso": str(cfg.get("hora_aviso", "08:00")),
+    }
 
 def revisar(paises_seleccion, hoy, dias):
+    """Recorre los paises seleccionados y devuelve (alertas, revisados)."""
     alertas = []
-    paises_revisados = []
-    for cod, pais in paises_seleccion:
-        archivo = os.path.join(BASES_DIR, f"obligaciones_{cod.lower()}.json")
-        data = cargar_archivo(archivo)
+    revisados = []
+    for cod, nombre_pais in paises_seleccion:
+        data = cargar_pais(cod)
         if not data:
             continue
-        paises_revisados.append(cod)
-        for oblig in data.get("obligaciones", []):
-            f = vencimiento_cercano(oblig, data, hoy, dias)
-            if f:
-                alertas.append({
-                    "pais": pais, "codigo": cod, "nombre": oblig.get("nombre",""),
-                    "formulario": oblig.get("formulario",""), "fecha": f.isoformat(),
-                    "dias_rest": (f - hoy).days,
-                })
+        revisados.append(cod)
+        for v in calcular_vencimientos_ventana(data, hoy, dias):
+            alertas.append({"codigo": cod, "pais": nombre_pais, **v})
     alertas.sort(key=lambda a: a["fecha"])
-    return alertas, paises_revisados
+    return alertas, revisados
+
+def generar_mensaje(alerta_list, revisados, dias, hoy):
+    """Construye el texto del aviso."""
+    if len(revisados) == 1:
+        cabecera = f"País revisado: {revisados[0]}"
+    else:
+        cabecera = f"Países revisados: {len(revisados)} ({', '.join(revisados)})"
+
+    if alerta_list:
+        lineas = [f"⏰ {cabecera} · {len(alerta_list)} vencen en {dias}d ({hoy.isoformat()})", ""]
+        for a in alerta_list:
+            urg = "🔴" if a["dias_rest"] <= 2 else ("🟠" if a["dias_rest"] <= 5 else "🟡")
+            lineas.append(f"  {urg} {a['fecha']} ({a['dias_rest']}d) · [{a['codigo']}] {a['nombre']}")
+        return "\n".join(lineas)
+    return f"✅ {cabecera} · Sin obligaciones en los proximos {dias} dias ({hoy.isoformat()})."
+
+def guardar_log(msg, hoy):
+    """Escribe el aviso en avisos/ (fecha + ultimo_aviso)."""
+    log_dir = os.path.join(RUTA_BASE, "avisos")
+    os.makedirs(log_dir, exist_ok=True)
+    for nombre in (f"aviso_{hoy.isoformat()}.txt", "ultimo_aviso.txt"):
+        with open(os.path.join(log_dir, nombre), "w", encoding="utf-8") as f:
+            f.write(msg + "\n")
+
+def notificar_si_hay(msg):
+    """Muestra notificacion visual si el mensaje contiene alertas."""
+    try:
+        import ctypes
+        ctypes.windll.user32.MessageBoxW(None, msg, "Aviso Obligaciones Fiscales", 0x30)
+    except Exception:
+        pass
 
 def main():
     argp = argparse.ArgumentParser()
@@ -99,6 +80,7 @@ def main():
     argp.add_argument("--notificar", action="store_true", help="mostrar notificacion visual")
     args = argp.parse_args()
     hoy = date.today()
+    cfg = leer_config()
 
     # Determinar paises a revisar
     todos = listar_paises()
@@ -112,47 +94,17 @@ def main():
             print(f"❌ Pais '{sel}' no existe. Disponibles: {disp} (o 'all').")
             return
     else:
-        cod_default = pais_por_defecto()
-        paises = [t for t in todos if t[0] == cod_default]
-        # si el config no matchea, usar el primero
-        if not paises and todos:
-            paises = [todos[0]]
+        paises = [t for t in todos if t[0] == cfg["pais_por_defecto"]] or (todos[:1] if todos else [])
 
-    dias = args.dias or dias_por_defecto()
+    dias = args.dias or cfg["dias_aviso"]
     alertas, revisados = revisar(paises, hoy, dias)
+    msg = generar_mensaje(alertas, revisados, dias, hoy)
 
-    # Cabecera / mensaje
-    if len(revisados) == 1:
-        cabecera = f"País revisado: {revisados[0]}"
-    else:
-        cabecera = f"Países revisados: {len(revisados)} ({', '.join(revisados)})"
-
-    if alertas:
-        lineas = [f"⏰ {cabecera} · {len(alertas)} vencen en {dias}d ({hoy.isoformat()})", ""]
-        for a in alertas:
-            urg = "🔴" if a["dias_rest"] <= 2 else ("🟠" if a["dias_rest"] <= 5 else "🟡")
-            lineas.append(f"  {urg} {a['fecha']} ({a['dias_rest']}d) · [{a['codigo']}] {a['nombre']}")
-        msg = "\n".join(lineas)
-    else:
-        msg = f"✅ {cabecera} · Sin obligaciones en los proximos {dias} dias ({hoy.isoformat()})."
-
-    # Log
-    log_dir = os.path.join(RUTA_BASE, "avisos")
-    os.makedirs(log_dir, exist_ok=True)
-    with open(os.path.join(log_dir, f"aviso_{hoy.isoformat()}.txt"), "w", encoding="utf-8") as f:
-        f.write(msg + "\n")
-    with open(os.path.join(log_dir, "ultimo_aviso.txt"), "w", encoding="utf-8") as f:
-        f.write(msg + "\n")
-
+    guardar_log(msg, hoy)
     print(msg)
 
-    # Notificacion visual si hay alertas
     if args.notificar and alertas:
-        try:
-            import ctypes
-            ctypes.windll.user32.MessageBoxW(None, msg, "Aviso Obligaciones Fiscales", 0x30)
-        except Exception:
-            pass
+        notificar_si_hay(msg)
 
 if __name__ == "__main__":
     main()

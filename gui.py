@@ -10,8 +10,7 @@ Y aplica los cambios (actualiza config.json + la tarea programada de Windows).
 
 USO:  py -3.14 gui.py   (o doble clic)
 """
-import json, os, subprocess, glob, sys
-from datetime import datetime
+import json, os, subprocess, glob
 import tkinter as tk
 from tkinter import ttk, messagebox
 

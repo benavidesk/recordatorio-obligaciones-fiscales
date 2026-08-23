@@ -11,7 +11,7 @@ USO:  py -3.14 aplicar_hora.py
 2. Ejecuta este script (o 'aplicar_hora_avisos.bat').
 3. La tarea se actualiza con la nueva hora.
 """
-import json, os, subprocess, sys
+import json, os, subprocess
 
 RUTA = os.path.dirname(os.path.abspath(__file__))
 CONFIG = os.path.join(RUTA, "config.json")
