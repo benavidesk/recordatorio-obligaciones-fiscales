@@ -1,0 +1,59 @@
+{
+  "pais": "Chile",
+  "codigo": "CL",
+  "moneda": "CLP",
+  "id_contribuyente": "RUT",
+  "nota": "Base de obligaciones fiscales de Chile. Fuente: SII (Servicio de Impuestos Internos). IVA (F29), Renta (F22) anual, retenciones, cotizaciones previsionales. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Formulario 29 (IVA y retenciones) se declara en línea; F22 (renta anual) en abril. Calendario SII por tipo de contribuyente.",
+  "obligaciones": [
+    {
+      "id": "CL-IVA",
+      "nombre": "IVA - Declaración Mensual (Formulario 29)",
+      "formulario": "F29",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (19%), declaración y pago mensual del impuesto (F29). Vence según calendario SII."
+    },
+    {
+      "id": "CL-RETENCIONES",
+      "nombre": "Retenciones - (F29-IVA y otras)",
+      "formulario": "F29 retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del impuesto a la renta de trabajadores (segunda categoría) y otras, declaradas en F29."
+    },
+    {
+      "id": "CL-PPM",
+      "nombre": "PPM - Pagos Provisionales Mensuales",
+      "formulario": "PPM",
+      "tipo": "mensual",
+      "descripcion": "Pagos provisionales mensuales (PPM) del impuesto de primera categoría de empresas."
+    },
+    {
+      "id": "CL-RENTA-ANUAL",
+      "nombre": "Renta - Declaración Anual (Formulario 22)",
+      "formulario": "F22",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del impuesto a la renta (global complementario, primera y segunda categoría). Abril."
+    },
+    {
+      "id": "CL-PREVISIONAL",
+      "nombre": "Cotizaciones Previsionales (AFP, Salud, Seg. Cesantía)",
+      "formulario": "Planilla",
+      "tipo": "mensual",
+      "descripcion": "Cotizaciones previsionales de trabajadores dependientes (AFP, salud, seguro de cesantía)."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "CL-IVA": -1,
+      "CL-RETENCIONES": -1,
+      "CL-PPM": -1,
+      "CL-PREVISIONAL": -1
+    },
+    "anual_fijo": {
+      "CL-RENTA-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["CL-IVA", "CL-RETENCIONES", "CL-PPM", "CL-PREVISIONAL", "CL-RENTA-ANUAL"],
+    "nota": "F29 (IVA) y F22 (renta) según calendario SII. Verificar sii.cl."
+  }
+}

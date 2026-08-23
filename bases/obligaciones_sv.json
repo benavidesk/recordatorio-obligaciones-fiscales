@@ -1,0 +1,109 @@
+{
+  "pais": "El Salvador",
+  "codigo": "SV",
+  "moneda": "USD",
+  "id_contribuyente": "NIT",
+  "nota": "Base de obligaciones fiscales de El Salvador. Fuente: calendario tributario MH 2026. Fechas pueden moverse si caen en fin de semana/asueto; ver calendario oficial anual. Contribuciones/donaciones bienvenidas.",
+  "ultima_actualizacion": "2026-08-23",
+  "obligaciones": [
+    {
+      "id": "SV-F07",
+      "nombre": "IVA - Declaración y Pago",
+      "formulario": "F-07",
+      "tipo": "mensual",
+      "descripcion": "Impuesto a la Transferencia de Bienes Muebles y Prestación de Servicios (IVA 13%)."
+    },
+    {
+      "id": "SV-F14",
+      "nombre": "Renta - Pago a Cuenta y Retenciones",
+      "formulario": "F-14",
+      "tipo": "mensual",
+      "descripcion": "Declaración Mensual de Pago a Cuenta e Impuestos Retenidos de Renta y Agentes Extranjeros."
+    },
+    {
+      "id": "SV-ISSSAFP",
+      "nombre": "ISSS y AFP - Planilla de cotizaciones",
+      "formulario": "Planilla",
+      "tipo": "mensual",
+      "descripcion": "Aportes patronales y laborales de ISSS y AFP de trabajadores."
+    },
+    {
+      "id": "SV-F930",
+      "nombre": "IVA - Informe Retenciones",
+      "formulario": "F-930",
+      "tipo": "mensual",
+      "descripcion": "Informe Mensual de Retención, Percepción o Anticipo a Cuenta de IVA."
+    },
+    {
+      "id": "SV-F945",
+      "nombre": "Imprentas - Documentos impresos",
+      "formulario": "F-945",
+      "tipo": "mensual",
+      "descripcion": "Informe Mensual de Documentos Impresos a Contribuyentes Inscritos en IVA (imprentas)."
+    },
+    {
+      "id": "SV-F935",
+      "nombre": "Retenciones sobre Agentes Extranjeros",
+      "formulario": "F-935",
+      "tipo": "mensual",
+      "descripcion": "Informe Mensual de Retención sobre Agentes Extranjeros."
+    },
+    {
+      "id": "SV-F06",
+      "nombre": "Específicos y Ad-Valorem",
+      "formulario": "F-06",
+      "tipo": "mensual",
+      "descripcion": "Declaración de Impuestos Específicos, Advalorem y Contribución Especial."
+    },
+    {
+      "id": "SV-F960",
+      "nombre": "Donaciones",
+      "formulario": "F-960",
+      "tipo": "mensual",
+      "descripcion": "Informe sobre Donaciones."
+    },
+    {
+      "id": "SV-RENTA-ANUAL",
+      "nombre": "Impuesto sobre la Renta - Declaración Anual",
+      "formulario": "ISR Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del Impuesto sobre la Renta."
+    },
+    {
+      "id": "SV-DICTAMEN",
+      "nombre": "Dictamen e Informe Fiscal",
+      "formulario": "Dictamen",
+      "tipo": "anual",
+      "descripcion": "Dictamen e informe fiscal cuando aplica."
+    },
+    {
+      "id": "SV-MATRICULA",
+      "nombre": "Renovación Matrícula de Empresa",
+      "formulario": "CNR",
+      "tipo": "anual",
+      "descripcion": "Renovación de matrícula de empresa ante el Centro Nacional de Registros (CNR)."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "SV-F07": 10,
+      "SV-F14": 10,
+      "SV-ISSSAFP": 10,
+      "SV-F930": -1,
+      "SV-F945": -1,
+      "SV-F935": -1,
+      "SV-F06": -1,
+      "SV-F960": -1,
+      "SV-RENTA-ANUAL": -1,
+      "SV-DICTAMEN": -1,
+      "SV-MATRICULA": -1
+    },
+    "anual_fijo": {
+      "SV-RENTA-ANUAL": "04-30",
+      "SV-DICTAMEN": null,
+      "SV-MATRICULA": null
+    },
+    "dias_por_calendario_oficial": ["SV-F930", "SV-F945", "SV-F935", "SV-F06", "SV-F960"],
+    "nota": "dias=-1 significa que vencen según calendario oficial mensual del MH (dias variables). anual_fijo usa MM-DD. Ejemplo real ago-2026: F-07=10, F-930=27."
+  }
+}

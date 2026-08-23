@@ -1,0 +1,67 @@
+{
+  "pais": "Costa Rica",
+  "codigo": "CR",
+  "moneda": "CRC",
+  "id_contribuyente": "Cédula Jurídica/Física",
+  "nota": "Base de obligaciones fiscales de Costa Rica. Fuente: Hacienda CR (DGT/ATV) y calendario fiscal 2026. IVA (D-104) día 20, ISR, CCSS. Verificar ovitribucr.hacienda.go.cr/calendario-fiscal. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Calendario Fiscal CR en ATV (ovitribucr.hacienda.go.cr/calendario-fiscal). Fechas pueden trasladarse si caen en inhábil.",
+  "obligaciones": [
+    {
+      "id": "CR-IVA",
+      "nombre": "IVA - Declaración Mensual (D-104)",
+      "formulario": "D-104",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (13%), declaración y pago mensual. Vence el día 20 del mes siguiente (si cae inhábil se traslada)."
+    },
+    {
+      "id": "CR-ISR-RENTA",
+      "nombre": "ISR - Impuesto sobre la Renta (empresas)",
+      "formulario": "D-101",
+      "tipo": "mensual",
+      "descripcion": "Impuesto sobre la Renta de actividades lucrativas. Anticipos mensuales."
+    },
+    {
+      "id": "CR-PAGOS-PARC",
+      "nombre": "ISR - Pagos Parciales",
+      "formulario": "D-103",
+      "tipo": "trimestral",
+      "descripcion": "Pagos parciales del Impuesto sobre la Renta (según régimen)."
+    },
+    {
+      "id": "CR-RETENCIONES",
+      "nombre": "Retenciones - Impuesto cedular y otras",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del impuesto cedular de renta del trabajo y otras retenciones (D-108)."
+    },
+    {
+      "id": "CR-CCSS",
+      "nombre": "CCSS - Aportes patronales y laborales",
+      "formulario": "CCSS",
+      "tipo": "mensual",
+      "descripcion": "Contribuciones a la Caja Costarricense de Seguro Social (CCSS) y cuotas obrero-patronales."
+    },
+    {
+      "id": "CR-ISR-ANUAL",
+      "nombre": "ISR - Declaración Anual",
+      "formulario": "D-101 Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del Impuesto sobre la Renta. Personas jurídicas vence en febrero (ej. 15-feb); físicas varía."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "CR-IVA": 20,
+      "CR-ISR-RENTA": -1,
+      "CR-RETENCIONES": -1,
+      "CR-CCSS": -1
+    },
+    "anual_fijo": {
+      "CR-ISR-ANUAL": null,
+      "CR-PAGOS-PARC": null
+    },
+    "dias_por_calendario_oficial": ["CR-ISR-RENTA", "CR-RETENCIONES", "CR-CCSS", "CR-ISR-ANUAL", "CR-PAGOS-PARC"],
+    "nota": "IVA día 20 (dato verificado). ISR/retensiones/CCSS y anual según calendario ATV Hacienda (días variables). Verificar ovitribucr.hacienda.go.cr."
+  }
+}

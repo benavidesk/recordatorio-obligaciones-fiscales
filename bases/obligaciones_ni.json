@@ -1,0 +1,59 @@
+{
+  "pais": "Nicaragua",
+  "codigo": "NI",
+  "moneda": "NIO",
+  "id_contribuyente": "RUC",
+  "nota": "Base de obligaciones fiscales de Nicaragua. Fuente: DGI (Dirección General de Ingresos). IR = Impuesto sobre la Renta. Fechas pueden variar según régimen; verificar avisos DGI. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "La DGI emite avisos periódicos con las fechas exactas de cada período (ej. declaración anual IR vence en febrero).",
+  "obligaciones": [
+    {
+      "id": "NI-IVA",
+      "nombre": "Impuesto al Valor Agregado - IVA (declaración mensual)",
+      "formulario": "IVA",
+      "tipo": "mensual",
+      "descripcion": "Declaración y pago mensual del IVA (15%) correspondiente al mes anterior."
+    },
+    {
+      "id": "NI-IR-ANTICIPOS",
+      "nombre": "IR - Anticipos Mensuales",
+      "formulario": "IR Anticipos",
+      "tipo": "mensual",
+      "descripcion": "Anticipos del Impuesto sobre la Renta pagados mensualmente (retenciones y pagos a cuenta)."
+    },
+    {
+      "id": "NI-IR-ANUAL",
+      "nombre": "IR - Declaración Anual",
+      "formulario": "IR Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del Impuesto sobre la Renta (período fiscal anterior). Vence según aviso DGI (históricamente en febrero)."
+    },
+    {
+      "id": "NI-RETENCIONES",
+      "nombre": "Retenciones IR e IVA (agentes de retención)",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del Impuesto sobre la Renta y del IVA practicadas a proveedores/terceros, enteradas mensualmente."
+    },
+    {
+      "id": "NI-IGSS",
+      "nombre": "INSS - Aportaciones patronales y laborales",
+      "formulario": "INSS",
+      "tipo": "mensual",
+      "descripcion": "Aportaciones al Instituto Nicaragüense de Seguridad Social (INSS)."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "NI-IVA": -1,
+      "NI-IR-ANTICIPOS": -1,
+      "NI-RETENCIONES": -1,
+      "NI-IGSS": -1
+    },
+    "anual_fijo": {
+      "NI-IR-ANUAL": "02-28"
+    },
+    "dias_por_calendario_oficial": ["NI-IVA", "NI-IR-ANTICIPOS", "NI-RETENCIONES", "NI-IGSS", "NI-IR-ANUAL"],
+    "nota": "Mensuales según calendario/avisos DGI (días variables). IR Anual referencia 28-feb según EY (verificar aviso vigente)."
+  }
+}

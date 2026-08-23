@@ -1,0 +1,59 @@
+{
+  "pais": "Perú",
+  "codigo": "PE",
+  "moneda": "PEN",
+  "id_contribuyente": "RUC",
+  "nota": "Base de obligaciones fiscales de Perú. Fuente: SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria). IGV, ISR, retenciones, EsSalud/ONP. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "SUNAT asigna un cronograma mensual de vencimientos según el último dígito del RUC.",
+  "obligaciones": [
+    {
+      "id": "PE-IGV",
+      "nombre": "IGV - Impuesto General a las Ventas",
+      "formulario": "IGV mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto General a las Ventas (18%), declaración y pago mensual (Formulario 621, PDT). Vence según cronograma SUNAT por RUC."
+    },
+    {
+      "id": "PE-RENTA-MENSUAL",
+      "nombre": "IR - Pagos a Cuenta Mensuales",
+      "formulario": "IR mensual",
+      "tipo": "mensual",
+      "descripcion": "Pagos a cuenta del Impuesto a la Renta de tercera categoría (empresas), mensual (PDT 621)."
+    },
+    {
+      "id": "PE-RETENCIONES",
+      "nombre": "Retenciones IR e IGV",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del Impuesto a la Renta (cuarta/quinta categoría) y retenciones/detracciones del IGV."
+    },
+    {
+      "id": "PE-ESSALUD-ONP",
+      "nombre": "EsSalud y ONP / AFP",
+      "formulario": "Planilla",
+      "tipo": "mensual",
+      "descripcion": "Aportes a EsSalud y ONP/AFP sobre la planilla de trabajadores."
+    },
+    {
+      "id": "PE-RENTA-ANUAL",
+      "nombre": "IR - Declaración Jurada Anual",
+      "formulario": "IR anual (Renta)",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del Impuesto a la Renta de tercera categoría (empresas) y trabajadores."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "PE-IGV": -1,
+      "PE-RENTA-MENSUAL": -1,
+      "PE-RETENCIONES": -1,
+      "PE-ESSALUD-ONP": -1
+    },
+    "anual_fijo": {
+      "PE-RENTA-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["PE-IGV", "PE-RENTA-MENSUAL", "PE-RETENCIONES", "PE-ESSALUD-ONP", "PE-RENTA-ANUAL"],
+    "nota": "Vencimientos según cronograma SUNAT por último dígito del RUC (días variables). Verificar sunat.gob.pe."
+  }
+}

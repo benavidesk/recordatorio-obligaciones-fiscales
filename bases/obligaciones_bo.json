@@ -1,0 +1,56 @@
+{
+  "pais": "Bolivia",
+  "codigo": "BO",
+  "moneda": "BOB",
+  "id_contribuyente": "NIT",
+  "nota": "Base de obligaciones fiscales de Bolivia. Fuente: SIN (Servicio de Impuestos Nacionales). IVA, IUE, RC-IVA, IT, retenciones, Cajas/Seguridad social. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "El SIN publica calendario mensual; vencimientos por el último dígito del NIT.",
+  "obligaciones": [
+    {
+      "id": "BO-IVA",
+      "nombre": "IVA - Impuesto al Valor Agregado",
+      "formulario": "IVA",
+      "tipo": "mensual",
+      "descripcion": "IVA (13%), declaración y pago mensual. Vence según calendario SIN (por último dígito del NIT)."
+    },
+    {
+      "id": "BO-IUE",
+      "nombre": "IUE - Impuesto sobre las Utilidades de las Empresas",
+      "formulario": "IUE",
+      "tipo": "mensual",
+      "descripcion": "Impuesto sobre las Utilidades de las Empresas (declaración anual con pagos mensuales/trimestrales a cuenta)."
+    },
+    {
+      "id": "BO-RC-IVA",
+      "nombre": "RC-IVA - Régimen Complementario al IVA",
+      "formulario": "RC-IVA",
+      "tipo": "mensual",
+      "descripcion": "Régimen Complementario al IVA sobre salarios (retenido por el empleador)."
+    },
+    {
+      "id": "BO-IT",
+      "nombre": "IT - Impuesto a las Transacciones",
+      "formulario": "IT",
+      "tipo": "mensual",
+      "descripcion": "Impuesto a las Transacciones (3%), declaración y pago mensual."
+    },
+    {
+      "id": "BO-SEGURIDAD",
+      "nombre": "Seguridad Social (Cajas, AFP y Sistema Integral de Pensiones)",
+      "formulario": "Planilla",
+      "tipo": "mensual",
+      "descripcion": "Aportes a la seguridad social (cajas de salud, AFP) sobre la nómina."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "BO-SEGURIDAD": -1
+    },
+    "anual_fijo": {
+      "BO-IUE": null
+    },
+    "dias_por_calendario_oficial": ["BO-IVA", "BO-IUE", "BO-RC-IVA", "BO-IT", "BO-SEGURIDAD"],
+    "nota": "Vencimientos según calendario SIN (por dígito del NIT). Verificar impuestos.gob.bo."
+  }
+}

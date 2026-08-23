@@ -1,0 +1,64 @@
+{
+  "pais": "Colombia",
+  "codigo": "CO",
+  "moneda": "COP",
+  "id_contribuyente": "NIT (con DV)",
+  "nota": "Base de obligaciones fiscales de Colombia. Fuente: DIAN (Dirección de Impuestos y Aduanas Nacionales). IVA, retención e ICA mensuales; renta anual. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "La DIAN suele publicar el calendario tributario anual con fechas de vencimiento por el último dígito del NIT.",
+  "obligaciones": [
+    {
+      "id": "CO-IVA",
+      "nombre": "IVA - Declaración Mensual",
+      "formulario": "IVA mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (19%), declaración y pago. Vence según calendario DIAN (por último dígito del NIT)."
+    },
+    {
+      "id": "CO-RETENCION",
+      "nombre": "Retención en la Fuente",
+      "formulario": "Retención",
+      "tipo": "mensual",
+      "descripcion": "Retención en la fuente a título de renta e IVA, declaración y pago mensual."
+    },
+    {
+      "id": "CO-ICA",
+      "nombre": "ICA - Industria y Comercio",
+      "formulario": "ICA",
+      "tipo": "mensual",
+      "descripcion": "Impuesto de Industria y Comercio (municipal), declaración según el municipio (bimestral o mensual)."
+    },
+    {
+      "id": "CO-RENTA",
+      "nombre": "Renta - Impuesto sobre la Renta y Complementarios",
+      "formulario": "Renta Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del impuesto de renta y complementarios. Personas jurídicas y naturales."
+    },
+    {
+      "id": "CO-CREE-FORMAL",
+      "nombre": "Impuesto Simple / Formalización (según régimen)",
+      "formulario": "Simple",
+      "tipo": "anual",
+      "descripcion": "Régimen Simple de Tributación (consolidado) para pequeños contribuyentes, si aplica."
+    },
+    {
+      "id": "CO-PILA",
+      "nombre": "Parafiscales y Seguridad Social (PILA)",
+      "formulario": "PILA",
+      "tipo": "mensual",
+      "descripcion": "Aportes a seguridad social (salud, pensión) y parafiscales (SENA, ICBF, cajas) vía PILA."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "CO-PILA": -1
+    },
+    "anual_fijo": {
+      "CO-RENTA": null,
+      "CO-CREE-FORMAL": null
+    },
+    "dias_por_calendario_oficial": ["CO-IVA", "CO-RETENCION", "CO-ICA", "CO-PILA", "CO-RENTA", "CO-CREE-FORMAL"],
+    "nota": "Casi todas las obligaciones en Colombia vencen según el calendario DIAN (día variable según el NIT). PILA tiene fechas propias. Verificar dian.gov.co."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "pais": "Paraguay",
+  "codigo": "PY",
+  "moneda": "PYG",
+  "id_contribuyente": "RUC",
+  "nota": "Base de obligaciones fiscales de Paraguay. Fuente: SET (Subsecretaría de Estado de Tributación). IVA, IRP, IRACIS, retenciones, IPS. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "La SET publica calendario; vencimientos suelen ser por el último dígito del RUC y días del mes siguientes al período.",
+  "obligaciones": [
+    {
+      "id": "PY-IVA",
+      "nombre": "IVA - Declaración y Pago Mensual",
+      "formulario": "IVA mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (10%), declaración y pago mensual. Vence según calendario SET."
+    },
+    {
+      "id": "PY-IRP",
+      "nombre": "IRP - Impuesto a la Renta del Pequeño Contribuyente (Prestadores de Servicios)",
+      "formulario": "IRP",
+      "tipo": "trimestral",
+      "descripcion": "Impuesto a la Renta del Pequeño Contribuyente / prestadores de servicios profesionales independientes."
+    },
+    {
+      "id": "PY-IRACIS",
+      "nombre": "IRACIS - Renta de Actividades Comerciales, Industriales o de Servicios",
+      "formulario": "IRACIS",
+      "tipo": "mensual",
+      "descripcion": "Impuesto a la Renta de las Actividades Comerciales, Industriales o de Servicios (IRACIS). Anticipos y declaración."
+    },
+    {
+      "id": "PY-RETENCIONES",
+      "nombre": "Retenciones (IR, IVA)",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del Impuesto a la Renta y del IVA efectuadas a proveedores, enteradas mensualmente."
+    },
+    {
+      "id": "PY-IPS",
+      "nombre": "IPS - Aportes al Instituto de Previsión Social",
+      "formulario": "IPS",
+      "tipo": "mensual",
+      "descripcion": "Aportes patronales y laborales al Instituto de Previsión Social (IPS) sobre la nómina."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "PY-IRACIS": -1,
+      "PY-RETENCIONES": -1,
+      "PY-IPS": -1
+    },
+    "anual_fijo": {
+      "PY-IRP": null
+    },
+    "dias_por_calendario_oficial": ["PY-IVA", "PY-IRP", "PY-IRACIS", "PY-RETENCIONES", "PY-IPS"],
+    "nota": "Vencimientos según calendario SET. Verificar set.gov.py."
+  }
+}

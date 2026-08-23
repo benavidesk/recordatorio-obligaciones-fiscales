@@ -1,0 +1,59 @@
+{
+  "pais": "República Dominicana",
+  "codigo": "DO",
+  "moneda": "DOP",
+  "id_contribuyente": "RNC",
+  "nota": "Base de obligaciones fiscales de República Dominicana. Fuente: DGII (Dirección General de Impuestos Internos). ITBIS e ISR son las obligaciones principales. Calendario del Contribuyente en dgii.gov.do. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "DGII publica el 'Calendario del Contribuyente' con todas las fechas. Muchos vencimientos por régimen y últimas cifras del RNC.",
+  "obligaciones": [
+    {
+      "id": "DO-ITBIS",
+      "nombre": "ITBIS - Declaración Mensual",
+      "formulario": "ITBIS",
+      "tipo": "mensual",
+      "descripcion": "Impuesto a la Transferencia de Bienes Industrializados y Servicios (ITBIS 18%), declaración y pago mensual."
+    },
+    {
+      "id": "DO-ISR-RET",
+      "nombre": "ISR - Retenciones",
+      "formulario": "ISR Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del Impuesto sobre la Renta (asalariados y proveedores), enteradas mensualmente."
+    },
+    {
+      "id": "DO-ISR-ANTICIPOS",
+      "nombre": "ISR - Anticipos y Pagos a Cuenta",
+      "formulario": "ISR Anticipos",
+      "tipo": "mensual",
+      "descripcion": "Pagos a cuenta del Impuesto sobre la Renta según régimen."
+    },
+    {
+      "id": "DO-ISR-ANUAL",
+      "nombre": "ISR - Declaración Jurada Anual",
+      "formulario": "IR-2 / IR-17",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del Impuesto sobre la Renta de personas jurídicas (IR-2) y físicas (IR-17)."
+    },
+    {
+      "id": "DO-TSS",
+      "nombre": "TSS - Seguridad Social (SFS, AFP, ARS)",
+      "formulario": "TSS",
+      "tipo": "mensual",
+      "descripcion": "Aportes a la Tesorería de la Seguridad Social (SFS, AFP, ARS) sobre la nómina."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "DO-ITBIS": -1,
+      "DO-ISR-RET": -1,
+      "DO-ISR-ANTICIPOS": -1,
+      "DO-TSS": -1
+    },
+    "anual_fijo": {
+      "DO-ISR-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["DO-ITBIS", "DO-ISR-RET", "DO-ISR-ANTICIPOS", "DO-TSS", "DO-ISR-ANUAL"],
+    "nota": "ITBIS/ISR/TSS según Calendario del Contribuyente de la DGII (días variables por régimen). IR anual según calendario DGII. Verificar dgii.gov.do."
+  }
+}

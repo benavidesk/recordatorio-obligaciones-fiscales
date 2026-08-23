@@ -1,0 +1,75 @@
+{
+  "pais": "Panamá",
+  "codigo": "PA",
+  "moneda": "PAB",
+  "id_contribuyente": "RUC",
+  "nota": "Base de obligaciones fiscales de Panamá. Fuente: DGI-MEF (Dirección General de Ingresos) y calendario fiscal 2026. ITBMS 7%, ISR. Verificar dgi.mef.gob.pa. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Los vencimientos de ITBMS y adelantos ISR siguen el calendario fiscal de la DGI-MEF.",
+  "obligaciones": [
+    {
+      "id": "PA-ITBMS",
+      "nombre": "ITBMS - Declaración Mensual",
+      "formulario": "ITBMS",
+      "tipo": "mensual",
+      "descripcion": "Impuesto de Transferencia de Bienes Corporales Muebles y Prestación de Servicios (7%). Declaración mensual antes del día 15 del mes siguiente."
+    },
+    {
+      "id": "PA-RETENCIONES",
+      "nombre": "Retenciones ISR (agentes de retención)",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Declaración jurada de retenciones o remesas al exterior (Formularios 05/07). Mensual."
+    },
+    {
+      "id": "PA-ISR-ADELANTO1",
+      "nombre": "ISR - Primer Adelanto",
+      "formulario": "ISR Adelanto 1",
+      "tipo": "anual",
+      "descripcion": "Primer adelanto del Impuesto sobre la Renta. Vence el 30 de junio según calendario fiscal."
+    },
+    {
+      "id": "PA-ISR-ADELANTO2",
+      "nombre": "ISR - Segundo Adelanto",
+      "formulario": "ISR Adelanto 2",
+      "tipo": "anual",
+      "descripcion": "Segundo adelanto del Impuesto sobre la Renta. Vence el 30 de septiembre."
+    },
+    {
+      "id": "PA-ISR-ADELANTO3",
+      "nombre": "ISR - Tercer Adelanto",
+      "formulario": "ISR Adelanto 3",
+      "tipo": "anual",
+      "descripcion": "Tercer adelanto del Impuesto sobre la Renta. Vence el 31 de diciembre."
+    },
+    {
+      "id": "PA-ISR-ANUAL",
+      "nombre": "ISR - Declaración Jurada Anual",
+      "formulario": "ISR Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del Impuesto sobre la Renta. Vence el 31 de marzo."
+    },
+    {
+      "id": "PA-PLANILLA",
+      "nombre": "Planilla - CSS y Derechos Laborales",
+      "formulario": "Planilla",
+      "tipo": "mensual",
+      "descripcion": "Aportes a la Caja de Seguro Social (CSS) y cuota obrero-patronal sobre planilla."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "PA-ITBMS": 15,
+      "PA-RETENCIONES": -1,
+      "PA-PLANILLA": -1
+    },
+    "anual_fijo": {
+      "PA-ISR-ANUAL": "03-31",
+      "PA-ISR-ADELANTO1": "06-30",
+      "PA-ISR-ADELANTO2": "09-30",
+      "PA-ISR-ADELANTO3": "12-31"
+    },
+    "dias_por_calendario_oficial": ["PA-RETENCIONES", "PA-PLANILLA"],
+    "nota": "ITBMS día 15 (dato verificado). ISR anual 31-mar, adelantos 30-jun/30-sep/31-dic (calendario fiscal). Retenciones y planilla según DGI/CSS."
+  }
+}

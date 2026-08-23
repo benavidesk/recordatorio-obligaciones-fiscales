@@ -1,0 +1,59 @@
+{
+  "pais": "Argentina",
+  "codigo": "AR",
+  "moneda": "ARS",
+  "id_contribuyente": "CUIT",
+  "nota": "Base de obligaciones fiscales de Argentina. Fuente: ARCA (Agencia de Recaudación y Control Aduanero, que sustituyó a AFIP). IVA, Ganancias, retenciones, SUSS. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "ARCA es la autoridad que reemplazó a AFIP (nombre actualizado). Calendario mensual de vencimientos por CUIT y actividad.",
+  "obligaciones": [
+    {
+      "id": "AR-IVA",
+      "nombre": "IVA - Declaración Jurada Mensual",
+      "formulario": "IVA mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (21%), declaración jurada y pago mensual (DDJJ 731/741). Vence según calendario ARCA."
+    },
+    {
+      "id": "AR-GANANCIAS",
+      "nombre": "Ganancias - Impuesto a las Ganancias",
+      "formulario": "Ganancias",
+      "tipo": "mensual",
+      "descripcion": "Pagos mensuales a cuenta del Impuesto a las Ganancias de las empresas."
+    },
+    {
+      "id": "AR-RETENCIONES",
+      "nombre": "Retenciones (Ganancias, IVA, SUSS)",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones impositivas y de la seguridad social efectuadas a proveedores y trabajadores."
+    },
+    {
+      "id": "AR-SUSS",
+      "nombre": "SUSS - Seguridad Social (contribuciones patronales)",
+      "formulario": "SUSS",
+      "tipo": "mensual",
+      "descripcion": "Sistema Único de Seguridad Social: aportes y contribuciones patronales/laborales."
+    },
+    {
+      "id": "AR-GANANCIAS-ANUAL",
+      "nombre": "Ganancias - Declaración Jurada Anual",
+      "formulario": "Ganancias anual",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del Impuesto a las Ganancias (período fiscal anterior). Según cronograma ARCA."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "AR-IVA": -1,
+      "AR-GANANCIAS": -1,
+      "AR-RETENCIONES": -1,
+      "AR-SUSS": -1
+    },
+    "anual_fijo": {
+      "AR-GANANCIAS-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["AR-IVA", "AR-GANANCIAS", "AR-RETENCIONES", "AR-SUSS", "AR-GANANCIAS-ANUAL"],
+    "nota": "Vencimientos según calendario mensual ARCA por CUIT/actividad (días variables). Verificar arca.gob.ar."
+  }
+}

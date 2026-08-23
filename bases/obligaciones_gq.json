@@ -1,0 +1,50 @@
+{
+  "pais": "Guinea Ecuatorial",
+  "codigo": "GQ",
+  "moneda": "XAF (FCFA)",
+  "id_contribuyente": "NIF/Identificación fiscal",
+  "nota": "Base de obligaciones fiscales de Guinea Ecuatorial (único país africano hispanohablante). Fuente: Ministerio de Hacienda / impuestos. IVA, IS, IRPF y Seguridad Social. Datos de referencia - verificar autoridades locales. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Guinea Ecuatorial usa el FCFA (franco CFA) y tiene pocas fuentes públicas en línea; los datos son de referencia y conviene validarlos con un contador local.",
+  "obligaciones": [
+    {
+      "id": "GQ-IVA",
+      "nombre": "IVA - Impuesto sobre el Valor Añadido",
+      "formulario": "IVA",
+      "tipo": "mensual",
+      "descripcion": "IVA (15%), declaración y pago mensual/trimestral según régimen. Verificar autoridades locales."
+    },
+    {
+      "id": "GQ-IS",
+      "nombre": "IS - Impuesto sobre Sociedades",
+      "formulario": "IS",
+      "tipo": "anual",
+      "descripcion": "Impuesto sobre Sociedades (25%), declaración anual con pagos a cuenta."
+    },
+    {
+      "id": "GQ-IRPF",
+      "nombre": "IRPF - Impuesto sobre la Renta de las Personas Físicas",
+      "formulario": "IRPF",
+      "tipo": "mensual",
+      "descripcion": "Impuesto sobre la Renta de las Personas Físicas (retenciones de los salarios)."
+    },
+    {
+      "id": "GQ-SS",
+      "nombre": "Seguridad Social (INSESO)",
+      "formulario": "SS",
+      "tipo": "mensual",
+      "descripcion": "Aportes al Instituto Nacional de Seguridad Social de Guinea Ecuatorial (INSESO)."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "GQ-IRPF": -1,
+      "GQ-SS": -1
+    },
+    "anual_fijo": {
+      "GQ-IS": null
+    },
+    "dias_por_calendario_oficial": ["GQ-IVA", "GQ-IS", "GQ-IRPF", "GQ-SS"],
+    "nota": "Datos de referencia (fuentes locales limitadas en línea). Verificar con un profesional local o el Ministerio de Hacienda de Guinea Ecuatorial."
+  }
+}

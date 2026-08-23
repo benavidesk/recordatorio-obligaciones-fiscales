@@ -1,0 +1,75 @@
+{
+  "pais": "Guatemala",
+  "codigo": "GT",
+  "moneda": "GTQ",
+  "id_contribuyente": "NIT",
+  "nota": "Base de obligaciones fiscales de Guatemala. Fuente: calendario tributario SAT 2026. Los vencimientos en Guatemala siguen el calendario de la SAT con fechas por dígito verificador del NIT. Este ejemplo usa vencimiento estandar dia 1 (los dias exactos varian por dígito NIT). Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Calendario SAT por NIT: el vencimiento del IVA/ISR depende del último dígito del NIT del contribuyente. Cada mes el SAT publica las fechas exactas.",
+  "obligaciones": [
+    {
+      "id": "GT-IVA",
+      "nombre": "IVA - Declaración y Pago Mensual",
+      "formulario": "IVA Mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (IVA 12%) - declaración y pago. Vence según dígito verificador del NIT (calendario SAT)."
+    },
+    {
+      "id": "GT-ISR-IND",
+      "nombre": "ISR - Personas Individuales",
+      "formulario": "ISR Trimestral/Mensual",
+      "tipo": "trimestral",
+      "descripcion": "Impuesto sobre la Renta de personas individuales según régimen (mensual o trimestral, según dígito NIT)."
+    },
+    {
+      "id": "GT-ISR-SOC",
+      "nombre": "ISR - Personas Jurídicas",
+      "formulario": "ISR",
+      "tipo": "mensual",
+      "descripcion": "Impuesto sobre la Renta de sociedades/empresas según régimen. Vence por dígito NIT."
+    },
+    {
+      "id": "GT-IGSS",
+      "nombre": "IGSS - Aportes patronales y laborales",
+      "formulario": "IGSS",
+      "tipo": "mensual",
+      "descripcion": "Aportes al Instituto Guatemalteco de Seguridad Social (12.67% aprox)."
+    },
+    {
+      "id": "GT-INTECAP-IRTA",
+      "nombre": "INTECAP e IRTRA - Capacitación y recreación",
+      "formulario": "INTECAP/IRTRA",
+      "tipo": "mensual",
+      "descripcion": "Aportes a INTECAP (1%) e IRTRA (1%) sobre nómina."
+    },
+    {
+      "id": "GT-RAFAELA-HERENCIA",
+      "nombre": "ISR Anual - Declaración Jurada Patrimonial",
+      "formulario": "ISR Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del ISR y Patrimonio (según calendario SAT, fecha depende del NIT)."
+    },
+    {
+      "id": "GT-BALANZA",
+      "nombre": "Balanza de Comprobación Anual",
+      "formulario": "Balanza",
+      "tipo": "anual",
+      "descripcion": "Presentación de la balanza de comprobación anual ante la SAT."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "GT-IVA": -1,
+      "GT-ISR-IND": -1,
+      "GT-ISR-SOC": -1,
+      "GT-IGSS": -1,
+      "GT-INTECAP-IRTA": -1
+    },
+    "anual_fijo": {
+      "GT-RAFAELA-HERENCIA": null,
+      "GT-BALANZA": null
+    },
+    "dias_por_calendario_oficial": ["GT-IVA", "GT-ISR-IND", "GT-ISR-SOC", "GT-IGSS", "GT-INTECAP-IRTA", "GT-RAFAELA-HERENCIA", "GT-BALANZA"],
+    "nota": "Guatemala: casi TODAS las obligaciones vencen según el calendario SAT por dígito verificador del NIT, no en un día fijo. Por eso las marcamos 'por calendario oficial'. El motor demuestra que puede trabajar de ambas formas: día fijo (SV) o por calendario (GT)."
+  }
+}

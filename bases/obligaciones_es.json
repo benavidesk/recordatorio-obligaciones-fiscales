@@ -1,0 +1,78 @@
+{
+  "pais": "España",
+  "codigo": "ES",
+  "moneda": "EUR",
+  "id_contribuyente": "NIF",
+  "nota": "Base de obligaciones fiscales de España. Fuente: AEAT (Agencia Estatal de Administración Tributaria). IRPF, IVA, Impuesto de Sociedades, retenciones, Seguridad Social. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "España (UE) tiene un calendario fiscal anual publicado por la AEAT. IVA trimestral/mensual según régimen; IRPF por trimestre.",
+  "obligaciones": [
+    {
+      "id": "ES-IVA",
+      "nombre": "IVA - Declaración Trimestral/Mensual (Modelo 303)",
+      "formulario": "Modelo 303",
+      "tipo": "trimestral",
+      "descripcion": "IVA (21%), autoliquidación trimestral (Modelo 303), o mensual (Modelo 303 con régimen mensual/grandes empresas)."
+    },
+    {
+      "id": "ES-IVA-INTRA",
+      "nombre": "IVA - Declaración Recapitulativa Intracomunitaria (Modelo 349)",
+      "formulario": "Modelo 349",
+      "tipo": "trimestral",
+      "descripcion": "Operaciones intracomunitarias (Modelo 349), trimestral si hay comercio intra-UE."
+    },
+    {
+      "id": "ES-IRPF-TRIM",
+      "nombre": "IRPF - Pago Fraccionado (Modelo 130/131)",
+      "formulario": "Modelo 130/131",
+      "tipo": "trimestral",
+      "descripcion": "Pagos fraccionados del IRPF de autónomos/actividades económicas (Modelo 130 o 131)."
+    },
+    {
+      "id": "ES-RETENCIONES",
+      "nombre": "Retenciones IRPF (Modelo 111/115)",
+      "formulario": "Modelo 111",
+      "tipo": "trimestral",
+      "descripcion": "Retenciones de IRPF del trabajo y alquileres (Modelo 111/115), declaradas trimestralmente."
+    },
+    {
+      "id": "ES-SOC-IS",
+      "nombre": "Impuesto de Sociedades - Pago Fraccionado",
+      "formulario": "IS (Modelo 202)",
+      "tipo": "trimestral",
+      "descripcion": "Pagos fraccionados del Impuesto de Sociedades (Modelo 202) para sociedades."
+    },
+    {
+      "id": "ES-IRPF-ANUAL",
+      "nombre": "IRPF - Declaración de la Renta Anual",
+      "formulario": "IRPF (Modelo 100)",
+      "tipo": "anual",
+      "descripcion": "Declaración de la Renta de las Personas Físicas (Modelo 100). Campaña de abril a junio."
+    },
+    {
+      "id": "ES-SS",
+      "nombre": "Seguridad Social - Cuotas (autónomos y empresa)",
+      "formulario": "SS",
+      "tipo": "mensual",
+      "descripcion": "Cuotas de la Seguridad Social (autónomos y trabajadores) y boletines de cotización."
+    },
+    {
+      "id": "ES-SOC-ANUAL",
+      "nombre": "Impuesto de Sociedades - Liquidación Anual (Modelo 200)",
+      "formulario": "Modelo 200",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del Impuesto de Sociedades (Modelo 200). Octubre."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "ES-SS": -1
+    },
+    "anual_fijo": {
+      "ES-IRPF-ANUAL": null,
+      "ES-SOC-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["ES-IVA", "ES-IVA-INTRA", "ES-IRPF-TRIM", "ES-RETENCIONES", "ES-SOC-IS", "ES-SS", "ES-IRPF-ANUAL", "ES-SOC-ANUAL"],
+    "nota": "España: tributarios trimestrales/anuales según calendario AEAT (días del mes siguientes al trimestre/periodo). IRPF anual campaña abril-junio. IS anual octubre. Verificar sede.agenciatributaria.gob.es."
+  }
+}

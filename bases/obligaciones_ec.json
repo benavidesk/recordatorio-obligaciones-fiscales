@@ -1,0 +1,64 @@
+{
+  "pais": "Ecuador",
+  "codigo": "EC",
+  "moneda": "USD",
+  "id_contribuyente": "RUC / Cédula",
+  "nota": "Base de obligaciones fiscales de Ecuador. Fuente: SRI (Servicio de Rentas Internas). IVA, Impuesto a la Renta, retenciones, IESS. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "SRI publica calendario mensual; los vencimientos pueden variar por el noveno dígito del RUC.",
+  "obligaciones": [
+    {
+      "id": "EC-IVA",
+      "nombre": "IVA - Declaración Mensual / Semestral",
+      "formulario": "IVA",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (12%), declaración y pago. Mensual (o semestral para agentes que reportan como tal). Vence según calendario SRI."
+    },
+    {
+      "id": "EC-RETENCIONES",
+      "nombre": "Retenciones en la Fuente (IR e IVA)",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del impuesto a la renta y del IVA efectuadas a proveedores, declaradas mensualmente."
+    },
+    {
+      "id": "EC-IR-MENSUAL",
+      "nombre": "IR - Anticipo Mensual (Impuesto a la Renta)",
+      "formulario": "IR anticipo",
+      "tipo": "mensual",
+      "descripcion": "Anticipo del Impuesto a la Renta para personas jurídicas y obligadas a llevar contabilidad."
+    },
+    {
+      "id": "EC-IR-ANUAL",
+      "nombre": "IR - Declaración Anual",
+      "formulario": "IR Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del Impuesto a la Renta (personas naturales y jurídicas). Vence en marzo/abril según calendario."
+    },
+    {
+      "id": "EC-IESS",
+      "nombre": "IESS - Aportes patronales y laborales",
+      "formulario": "IESS",
+      "tipo": "mensual",
+      "descripcion": "Aportes al Instituto Ecuatoriano de Seguridad Social (IESS) sobre la nómina."
+    },
+    {
+      "id": "EC-ICE",
+      "nombre": "ICE - Impuesto a los Consumos Especiales",
+      "formulario": "ICE",
+      "tipo": "mensual",
+      "descripcion": "Impuesto a los Consumos Especiales (si aplica por actividad)."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "EC-ICE": -1,
+      "EC-IESS": -1
+    },
+    "anual_fijo": {
+      "EC-IR-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["EC-IVA", "EC-RETENCIONES", "EC-IR-MENSUAL", "EC-ICE", "EC-IESS", "EC-IR-ANUAL"],
+    "nota": "Vencimientos según calendario SRI (por noveno dígito RUC en varios casos). Verificar sri.gob.ec."
+  }
+}

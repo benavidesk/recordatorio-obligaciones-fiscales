@@ -1,0 +1,75 @@
+{
+  "pais": "Honduras",
+  "codigo": "HN",
+  "moneda": "HNL",
+  "id_contribuyente": "RTN",
+  "nota": "Base de obligaciones fiscales de Honduras. Fuente: calendario fiscal SAR 2026 (PwC, sdv, nompli). ISV 15%, ISR, IHSS. Vencimientos pueden variar por tipo de contribuyente y régimen; el día 10 del mes siguiente es estándar para mensuales. Verificar sar.gob.hn. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Calendario SAR: algunos vencimientos dependen del último dígito del RTN o son trasladados al día hábil siguiente si caen en fin de semana/feriado.",
+  "obligaciones": [
+    {
+      "id": "HN-ISV",
+      "nombre": "ISV - Declaración Mensual (Impuesto sobre Ventas 15%)",
+      "formulario": "ISV",
+      "tipo": "mensual",
+      "descripcion": "Impuesto sobre Ventas 15%, declaración y pago mensual. Vence el día 10 del mes siguiente."
+    },
+    {
+      "id": "HN-ISR-RET",
+      "nombre": "ISR - Retenciones Mensuales",
+      "formulario": "ISR Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del Impuesto sobre la Renta (12.5% y otras), enteradas mensualmente. Vencen el día 10 del mes siguiente."
+    },
+    {
+      "id": "HN-ISR-PAC",
+      "nombre": "ISR - Pagos a Cuenta Trimestrales",
+      "formulario": "ISR Pregunta",
+      "tipo": "trimestral",
+      "descripcion": "Pagos a cuenta del Impuesto sobre la Renta (para personas jurídicas/actividades lucrativas). Trimestral."
+    },
+    {
+      "id": "HN-IHSS",
+      "nombre": "IHSS - Aportes patronales y laborales",
+      "formulario": "IHSS",
+      "tipo": "mensual",
+      "descripcion": "Aportes al Instituto Hondureño de Seguridad Social."
+    },
+    {
+      "id": "HN-RAP",
+      "nombre": "RAP - Aportaciones público patronales",
+      "formulario": "RAP",
+      "tipo": "mensual",
+      "descripcion": "Régimen de Aportaciones Privadas (RAP), que sustituyó al INFOP, sobre la nómina."
+    },
+    {
+      "id": "HN-ISR-ANUAL",
+      "nombre": "ISR - Declaración Anual",
+      "formulario": "ISR Anual",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del Impuesto sobre la Renta. Personas naturales y jurídicas."
+    },
+    {
+      "id": "HN-IAN",
+      "nombre": "IAN - Impuesto sobre Activos Netos",
+      "formulario": "IAN",
+      "tipo": "anual",
+      "descripcion": "Impuesto sobre Activos Netos (equivalente al patrimonio)."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "HN-ISV": 10,
+      "HN-ISR-RET": 10,
+      "HN-IHSS": 10,
+      "HN-RAP": 10,
+      "HN-ISR-PAC": -1
+    },
+    "anual_fijo": {
+      "HN-ISR-ANUAL": null,
+      "HN-IAN": null
+    },
+    "dias_por_calendario_oficial": ["HN-ISR-PAC", "HN-ISR-ANUAL", "HN-IAN"],
+    "nota": "Mensuales estándar día 10. Trimestral/anual según calendario SAR (varían por régimen y RTN). Verificar sar.gob.hn."
+  }
+}

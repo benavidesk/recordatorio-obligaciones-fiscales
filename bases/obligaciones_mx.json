@@ -1,0 +1,59 @@
+{
+  "pais": "México",
+  "codigo": "MX",
+  "moneda": "MXN",
+  "id_contribuyente": "RFC",
+  "nota": "Base de obligaciones fiscales de México. Fuente: SAT (Servicio de Administración Tributaria). ISR e IVA declaraciones mensuales día 17. Declaración anual ISR abril (física) / personas morales marzo. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "Declaraciones mensuales ISR/IVA vencen el día 17 de cada mes. Días inhábiles recorren el plazo al día hábil siguiente.",
+  "obligaciones": [
+    {
+      "id": "MX-ISR",
+      "nombre": "ISR - Pago Provisional Mensual",
+      "formulario": "ISR Mensual",
+      "tipo": "mensual",
+      "descripcion": "Pago provisional del Impuesto sobre la Renta. Vence el día 17 de cada mes (ingresos del mes anterior)."
+    },
+    {
+      "id": "MX-IVA",
+      "nombre": "IVA - Declaración Mensual",
+      "formulario": "IVA Mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (16%), declaración y pago. Vence el día 17 de cada mes."
+    },
+    {
+      "id": "MX-RET-DIGITALES",
+      "nombre": "Retenciones a plataformas digitales (nuevo 2026)",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retención ISR e IVA a personas morales que venden por plataformas digitales de intermediación (desde 2026)."
+    },
+    {
+      "id": "MX-ISR-ANUAL-FISICA",
+      "nombre": "ISR - Declaración Anual Personas Físicas",
+      "formulario": "Anual ISR física",
+      "tipo": "anual",
+      "descripcion": "Declaración anual del ISR de personas físicas (honorarios, actividad empresarial). Vence el 30 de abril."
+    },
+    {
+      "id": "MX-IMSS",
+      "nombre": "IMSS - Cuotas obrero-patronales",
+      "formulario": "IMSS",
+      "tipo": "mensual",
+      "descripcion": "Cuotas al Instituto Mexicano del Seguro Social (IMSS) e INFONAVIT sobre la nómina."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "MX-ISR": 17,
+      "MX-IVA": 17,
+      "MX-RET-DIGITALES": -1,
+      "MX-IMSS": -1
+    },
+    "anual_fijo": {
+      "MX-ISR-ANUAL-FISICA": "04-30"
+    },
+    "dias_por_calendario_oficial": ["MX-RET-DIGITALES", "MX-IMSS"],
+    "nota": "ISR/IVA día 17 (dato verificado). Declaración anual física 30-abr. Retenciones digitales e IMSS según calendario SAT."
+  }
+}

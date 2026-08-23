@@ -1,0 +1,56 @@
+{
+  "pais": "Uruguay",
+  "codigo": "UY",
+  "moneda": "UYU",
+  "id_contribuyente": "RUT",
+  "nota": "Base de obligaciones fiscales de Uruguay. Fuente: DGI (Dirección General Impositiva). IVA, IRAE, retenciones IRPF/IRNR, BPS. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-23",
+  "dato_especial": "La DGI publica un calendario anual de vencimientos (Código de Tributo y dígito verificador del RUT).",
+  "obligaciones": [
+    {
+      "id": "UY-IVA",
+      "nombre": "IVA - Declaración y Pago Mensual",
+      "formulario": "IVA mensual",
+      "tipo": "mensual",
+      "descripcion": "Impuesto al Valor Agregado (22%), declaración y pago mensual. Vence según calendario DGI (por dígito RUT)."
+    },
+    {
+      "id": "UY-IRAE",
+      "nombre": "IRAE - Impuesto a las Rentas de las Actividades Económicas",
+      "formulario": "IRAE",
+      "tipo": "mensual",
+      "descripcion": "IRAE - impuesto a las rentas empresariales. Anticipos mensuales y declaración anual."
+    },
+    {
+      "id": "UY-RETENCIONES",
+      "nombre": "Retenciones IRPF e IRNR",
+      "formulario": "Retenciones",
+      "tipo": "mensual",
+      "descripcion": "Retenciones del IRPF (rentas del trabajo) y del IRNR (no residentes) efectuadas por el empleador."
+    },
+    {
+      "id": "UY-BPS",
+      "nombre": "BPS - Aportes patronales y laborales",
+      "formulario": "BPS",
+      "tipo": "mensual",
+      "descripcion": "Aportes al Banco de Previsión Social (BPS) sobre la nómina de trabajadores."
+    },
+    {
+      "id": "UY-IRAE-ANUAL",
+      "nombre": "IRAE - Declaración Jurada Anual",
+      "formulario": "IRAE anual",
+      "tipo": "anual",
+      "descripcion": "Declaración jurada anual del IRAE. Según calendario DGI."
+    }
+  ],
+  "reglas_vencimiento": {
+    "dias": {
+      "UY-BPS": -1
+    },
+    "anual_fijo": {
+      "UY-IRAE-ANUAL": null
+    },
+    "dias_por_calendario_oficial": ["UY-IVA", "UY-IRAE", "UY-RETENCIONES", "UY-BPS", "UY-IRAE-ANUAL"],
+    "nota": "Vencimientos según calendario DGI (día variable por dígito verificador RUT). Verificar dgi.gub.uy."
+  }
+}
