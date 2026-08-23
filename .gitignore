@@ -10,3 +10,13 @@ Thumbs.db
 # Datos locales del usuario
 *.local
 avisos/
+
+# PyInstaller (ejecutable y artefactos de build)
+build/
+dist/
+distribucion/
+*.spec
+
+# Editor / misc
+.vscode/
+.idea/

@@ -1,0 +1,7 @@
+{
+  "version": "0.3.0",
+  "fecha": "2026-08-23",
+  "nombre": "Recordatorio de Obligaciones Fiscales",
+  "url_github": "https://github.com/benavidesk/recordatorio-obligaciones-fiscales",
+  "nota": "Este archivo marca la version actual del software. El checker de actualizaciones compara esta version (local) con la del repositorio publico en GitHub para avisar cuando hay datos o codigo nuevos."
+}
