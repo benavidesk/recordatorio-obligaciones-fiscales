@@ -1,5 +1,6 @@
 {
   "pais_por_defecto": "SV",
   "dias_aviso": 7,
-  "nota": "Configuracion de los avisos automaticos. 'pais_por_defecto' es el pais que se revisa por defecto en los recordatorios. Cambialo (ej. 'GT', 'MX', 'US'...) segun el pais que uses. Con 'all' se revisan todos."
+  "hora_aviso": "09:00",
+  "nota": "Configuracion de los avisos automaticos. 'pais_por_defecto' es el pais que se revisa (ej. 'SV', 'GT', 'MX', 'US'...; 'all' para todos). 'dias_aviso' = cuantos dias a la vista. 'hora_aviso' = a que hora se ejecuta el aviso diario (formato HH:MM, 24h). Despues de cambiar hora_aviso, ejecuta 'aplicar_hora_avisos.bat' (o 'python aplicar_hora.py') para actualizar la tarea programada de Windows."
 }
