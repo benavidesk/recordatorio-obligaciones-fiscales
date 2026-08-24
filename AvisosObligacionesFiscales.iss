@@ -26,14 +26,9 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-; El ejecutable principal
-Source: "dist\AvisosObligacionesFiscales.exe"; DestDir: "{app}"; Flags: ignoreversion
-; Bases de datos de obligaciones por pais
-Source: "bases\*"; DestDir: "{app}\bases"; Flags: ignoreversion recursesubdirs createallsubdirs
-; Archivos de configuracion y documentacion
-Source: "config.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "VERSION.json"; DestDir: "{app}"; Flags: ignoreversion
+; El ejecutable principal + DLLs de Nuitka standalone + bases + config + docs
+; (todo lo de la carpeta de distribucion va junto al exe, como standalone)
+Source: "distribucion_nuitka\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
