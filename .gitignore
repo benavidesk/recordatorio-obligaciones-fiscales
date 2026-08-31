@@ -17,6 +17,11 @@ dist/
 distribucion/
 *.spec
 
+# Builds Nuitka migrados (el build Nuitka da segfault; se abandono)
+distribucion_nuitka/
+nuitka_out/
+nuitka_out_full/
+
 # Binarios de distribución (el exe va como Release en GitHub, no en el repo)
 *.zip
 

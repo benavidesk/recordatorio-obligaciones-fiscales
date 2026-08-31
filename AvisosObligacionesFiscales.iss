@@ -26,9 +26,13 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-; El ejecutable principal + DLLs de Nuitka standalone + bases + config + docs
-; (todo lo de la carpeta de distribucion va junto al exe, como standalone)
-Source: "distribucion_nuitka\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; El ejecutable principal PyInstaller (onefile funciona) + bases + config + docs
+; NOTA: el build Nuitka (distribucion_nuitka) da segfault al arrancar, NO usar.
+Source: "dist\AvisosObligacionesFiscales.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bases\*"; DestDir: "{app}\bases"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "config.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "VERSION.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
