@@ -35,6 +35,10 @@ BASES = os.path.join(RUTA, "bases")
 CONFIG = os.path.join(RUTA, "config.json")
 TAREA = "AvisosObligacionesFiscales"
 BAT = os.path.join(RUTA, "ejecutar_avisos.bat")
+# Ejecutable de avisos (empaguetado, sin depender de que haya Python instalado)
+EXE_AVISOS = os.path.join(RUTA, "AvisosAutomaticos.exe")
+# Launcher VBS que ejecuta el aviso SIN ventana de consola (solo la notificacion)
+VBS = os.path.join(RUTA, "ejecutar_aviso_silencioso.vbs")
 
 # Paleta de color (tema claro/celeste)
 BG = "#f5f9ff"
@@ -63,15 +67,74 @@ def listar_paises():
         except: pass
     return paises
 
+def _carpeta_inicio():
+    """Ruta de la carpeta 'Inicio' del usuario (para lanzar el aviso al iniciar
+    sesion sin necesitar privilegios de administrador, que exige schtasks ONLOGON)."""
+    try:
+        import win32com.client  # no disponible; se usa ctypes/registro
+    except Exception:
+        pass
+    # Ruta estandar de la carpeta de inicio del usuario
+    import ctypes
+    from ctypes import wintypes
+    CSIDL_STARTUP = 7
+    buf = ctypes.create_unicode_buffer(wintypes.MAX_PATH)
+    ctypes.windll.shell32.SHGetFolderPathW(0, CSIDL_STARTUP, 0, 0, buf)
+    return buf.value
+
+def _crear_acceso_inicio():
+    """Crea un acceso directo en la carpeta de Inicio que ejecuta el aviso
+    silenciosamente (vbs via wscript) al iniciar la sesion."""
+    try:
+        import subprocess
+        carpeta = _carpeta_inicio()
+        lnk = os.path.join(carpeta, "Avisos Obligaciones Fiscales.lnk")
+        # PS = \Windows\System32\wscript.exe + comillas del vbs
+        cmd = (
+            'powershell -Command "$ws=New-Object -ComObject WScript.Shell; '
+            '$sc=$ws.CreateShortcut(\'{lnk}\'); '
+            '$sc.TargetPath=\'C:\\Windows\\System32\\wscript.exe\'; '
+            '$sc.Arguments=\'"{vbs}"\'; $sc.Description=\'Aviso diario\'; $sc.Save()"'
+        ).format(lnk=lnk.replace("\\", "\\\\"), vbs=VBS.replace("\\", "\\\\"))
+        subprocess.run(cmd, shell=True, capture_output=True, timeout=30)
+        return os.path.exists(lnk)
+    except Exception:
+        return False
+
+def _eliminar_acceso_inicio():
+    """Borra el acceso directo de Inicio si existe."""
+    try:
+        lnk = os.path.join(_carpeta_inicio(), "Avisos Obligaciones Fiscales.lnk")
+        if os.path.exists(lnk):
+            os.remove(lnk)
+    except Exception:
+        pass
+
 def aplicar_tarea(hora):
     def run(cmd):
         try:
             r = subprocess.run(cmd, capture_output=True, text=False)
             return (r.stdout or b"").decode("mbcs", errors="replace")
         except: return ""
+    # Launcher silencioso: el VBS ejecuta el aviso sin ventana de consola, solo
+    # la notificacion. Si no existe (modo script sin el VBS), usamos exe/bat.
+    if os.path.exists(VBS):
+        launcher = VBS
+    elif os.path.exists(EXE_AVISOS):
+        launcher = "\"{}\" --notificar".format(EXE_AVISOS)
+    else:
+        launcher = "\"{}\" --notificar".format(BAT)
+
+    # 1) Tarea diaria a la hora elegida (silenciosa, solo notificacion)
     run(["schtasks", "/Delete", "/TN", TAREA, "/F"])
-    run(["schtasks", "/Create", "/TN", TAREA, "/TR", BAT,
+    run(["schtasks", "/Create", "/TN", TAREA, "/TR", launcher,
          "/SC", "DAILY", "/ST", hora, "/F"])
+    run(["schtasks", "/Change", "/TN", TAREA, "/ENABLE"])
+
+    # 2) Inicio de sesion: acceso directo en la carpeta Inicio (no requiere
+    #    administrador, a diferencia de schtasks /SC ONLOGON).
+    _eliminar_acceso_inicio()
+    _crear_acceso_inicio()
 
 def crear_casilla(parent, titulo):
     """Crea un recuadro (LabelFrame) con borde visible y fondo blanco."""

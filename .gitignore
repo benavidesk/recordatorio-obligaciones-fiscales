@@ -24,6 +24,9 @@ nuitka_out_full/
 
 # Binarios de distribución (el exe va como Release en GitHub, no en el repo)
 *.zip
+# Ejecutables compilados en la raiz (AvisosAutomaticos.exe, setups) — van como Release
+/AvisosAutomaticos.exe
+/AvisosObligacionesFiscales-Setup*.exe
 
 # La landing vive en su propio repo (obligaciones-fiscales-landing)
 landing/

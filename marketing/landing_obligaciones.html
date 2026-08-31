@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recordatorio de Obligaciones Fiscales + DescargarFacturas — Para contadores que automatizan su trabajo</title>
+<style>
+  :root{
+    --fondo:#0d1117;
+    --card:#161b22;
+    --card2:#1c2230;
+    --borde:#30363d;
+    --texto:#e6edf3;
+    --gris:#8b949e;
+    --gris2:#6e7681;
+    --acento:#2ea043;
+    --acento2:#238636;
+    --verde-texto:#56d364;
+    --oro:#d4a017;
+    --w:#25d366;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--fondo);color:var(--texto);line-height:1.55;
+  }
+  .contenedor{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+  /* ===== Navbar ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,17,23,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--borde);
+  }
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+  .logo{font-weight:700;font-size:17px;letter-spacing:.3px;}
+  .logo span{color:var(--verde-texto);}
+  .nav-cta{
+    background:var(--w);color:#075e54;font-weight:700;border:none;
+    padding:9px 18px;border-radius:8px;cursor:pointer;font-size:14px;text-decoration:none;
+  }
+  .nav-cta:hover{filter:brightness(1.1);}
+
+  /* ===== Secciones ===== */
+  section{padding:60px 0;}
+  .hero{padding-top:70px;padding-bottom:50px;text-align:center;
+    background:radial-gradient(ellipse at top,#16202e 0%,var(--fondo) 60%);}
+  .badge{
+    display:inline-block;background:rgba(46,160,67,.15);color:var(--verde-texto);
+    border:1px solid rgba(46,160,67,.4);padding:6px 14px;border-radius:999px;
+    font-size:13px;font-weight:600;margin-bottom:22px;
+  }
+  h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin-bottom:16px;font-weight:800;}
+  h1 .resaltar{color:var(--verde-texto);}
+  .sub{font-size:clamp(16px,2vw,19px);color:var(--gris);max-width:720px;margin:0 auto 26px;}
+  .check-list{list-style:none;display:inline-block;text-align:left;margin-bottom:28px;}
+  .check-list li{padding:6px 0;font-size:16px;}
+  .check-list li::before{content:"✅ "; }
+  .btn-grande{
+    display:inline-block;background:var(--w);color:#075e54;font-weight:800;
+    padding:15px 34px;border-radius:10px;font-size:18px;text-decoration:none;
+    box-shadow:0 4px 18px rgba(37,211,102,.35);
+  }
+  .btn-grande:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .btn-secundario{
+    display:inline-block;background:var(--card2);color:var(--texto);font-weight:600;
+    padding:12px 24px;border-radius:8px;font-size:15px;text-decoration:none;
+    border:1px solid var(--borde);
+  }
+  .btn-secundario:hover{border-color:var(--gris);}
+  .captura{
+    margin:38px auto 0;max-width:880px;border:1px solid var(--borde);border-radius:12px;
+    overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);
+  }
+  .captura-top{background:var(--card2);padding:10px 16px;display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--borde);}
+  .punto{width:11px;height:11px;border-radius:50%;}
+  .p1{background:#ff5f57;}.p2{background:#febc2e;}.p3{background:#28c840;}
+  .captura-titulo{color:var(--gris);font-size:13px;margin-left:10px;}
+  .captura-cuerpo{background:var(--card);padding:30px;text-align:left;}
+  .fila-demo{display:flex;align-items:center;justify-content:space-between;background:var(--card2);border:1px solid var(--borde);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+  .fila-demo .nombre{font-weight:600;}
+  .fila-demo .fecha{color:var(--gris);font-size:13px;}
+  .bajas{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .chip{background:rgba(46,160,67,.12);border:1px solid rgba(46,160,67,.35);color:var(--verde-texto);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;}
+
+  /* ===== Cards de productos ===== */
+  .seccion-titulo{text-align:center;margin-bottom:40px;}
+  .seccion-titulo h2{font-size:clamp(24px,3vw,36px);margin-bottom:10px;font-weight:800;}
+  .seccion-titulo p{color:var(--gris);font-size:16px;max-width:640px;margin:0 auto;}
+
+  /* Gratuito */
+  .gratis-card{
+    background:var(--card);border:2px solid var(--acento);border-radius:14px;
+    padding:34px;max-width:860px;margin:0 auto;position:relative;overflow:hidden;
+  }
+  .gratis-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(46,160,67,.12),transparent 55%);pointer-events:none;}
+  .gratis-tag{
+    display:inline-block;background:var(--acento);color:#fff;font-weight:800;font-size:13px;
+    padding:5px 14px;border-radius:999px;margin-bottom:14px;
+  }
+  .gratis-card h3{font-size:22px;margin-bottom:10px;}
+  .gratis-bullets{list-style:none;margin:14px 0 22px;}
+  .gratis-bullets li{padding:6px 0;font-size:15px;color:#e1e7ee;}
+  .gratis-bullets li::before{content:"✅ ";}
+  .gratis-pie{color:var(--gris);font-size:14px;margin-top:16px;}
+
+  /* Pago */
+  .pago-card{
+    background:linear-gradient(165deg,#1a2230,#161b22);border:1px solid var(--borde);
+    border-radius:14px;padding:38px;max-width:900px;margin:40px auto 0;
+  }
+  .pago-card h3{font-size:24px;margin-bottom:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .pago-card .subp{color:var(--gris);font-size:15px;margin-bottom:20px;}
+  .beneficios{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:20px 0 26px;}
+  .beneficio{background:var(--card2);border:1px solid var(--borde);border-radius:10px;padding:18px;}
+  .beneficio .icono{font-size:26px;margin-bottom:8px;}
+  .beneficio h4{font-size:15px;margin-bottom:6px;}
+  .beneficio p{font-size:13px;color:var(--gris);}
+  .precio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:26px;}
+  .precio-caja{background:var(--card);border:1px solid var(--borde);border-radius:10px;padding:20px;text-align:center;}
+  .precio-caja .etiqueta{font-size:13px;color:var(--gris);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+  .precio-caja .monto{font-size:30px;font-weight:800;margin:6px 0;}
+  .precio-caja .nota{font-size:13px;color:var(--gris);}
+  .precio-caja.destacada{border-color:var(--oro);}
+  .precio-caja.destacada .monto{color:var(--oro);}
+  .precio-caja .gratis-demo{display:inline-block;background:var(--acento);color:#fff;font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;margin-top:8px;}
+  .cta-linea{text-align:center;margin-top:26px;}
+  .nota-demo{color:var(--gris);font-size:14px;margin-top:14px;}
+
+  /* Video */
+  .video-card{background:var(--card);border:1px solid var(--borde);border-radius:14px;padding:30px;max-width:640px;margin:0 auto;text-align:center;}
+  .video-play{
+    width:110px;height:110px;border-radius:50%;background:var(--w);margin:0 auto 18px;
+    display:flex;align-items:center;justify-content:center;color:#075e54;font-size:44px;
+    box-shadow:0 6px 24px rgba(37,211,102,.35);
+  }
+  .video-card h3{font-size:20px;margin-bottom:8px;}
+  .video-card p{color:var(--gris);font-size:15px;margin-bottom:20px;}
+  .video-card .btn-secundario{margin-top:6px;}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{background:var(--card);border:1px solid var(--borde);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+  .faq-q{padding:18px 20px;cursor:pointer;font-weight:600;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+  .faq-q::after{content:"▾";transition:transform .2s;color:var(--gris);}
+  .faq-item.abierto .faq-q::after{transform:rotate(180deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 20px 18px;color:var(--gris);font-size:14px;}
+
+  /* Métodos de pago */
+  .pagos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px;}
+  .pago{background:var(--card2);border:1px solid var(--borde);border-radius:10px;padding:14px 20px;text-align:center;min-width:150px;}
+  .pago .i{font-size:24px;margin-bottom:6px;}
+  .pago .n{font-weight:600;font-size:14px;}
+  .pago .d{font-size:12px;color:var(--gris);}
+
+  /* CTA final */
+  .cta-final{text-align:center;padding:70px 20px;
+    background:linear-gradient(180deg,var(--fondo),#13211a);}
+  .cta-final h2{font-size:clamp(24px,3vw,36px);margin-bottom:12px;}
+  .cta-final p{color:var(--gris);font-size:16px;margin-bottom:28px;max-width:640px;margin-left:auto;margin-right:auto;}
+
+  footer{border-top:1px solid var(--borde);padding:26px 0;text-align:center;color:var(--gris2);font-size:13px;}
+  footer a{color:var(--gris);text-decoration:none;}
+  footer a:hover{color:var(--texto);}
+
+  @media(max-width:600px){
+    .pago-card,.gratis-card{padding:26px 20px;}
+    .beneficios{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header>
+  <div class="contenedor navbar">
+    <div class="logo">Obligaciones<span>Fiscales</span></div>
+    <a class="nav-cta" href="https://wa.me/50366924056" target="_blank" rel="noopener">Pedir Demo</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="contenedor">
+    <span class="badge">Hecho para contadores</span>
+    <h1>No vuelvas a olvidar un <span class="resaltar">vencimiento fiscal</span></h1>
+    <p class="sub">
+      Recordatorios oficiales de impuestos en <strong>19 países</strong>, descarga automática de facturas
+      y organización que te ahorra horas cada mes.
+    </p>
+    <ul class="check-list">
+      <li>Vencimientos oficiales de impuestos en 19 países</li>
+      <li>Notificaciones automáticas antes de cada fecha</li>
+      <li>Ordena tus facturas por país, año, mes y tipo</li>
+    </ul>
+    <br>
+    <a class="btn-grande" href="#gratis">Descargar Gratis</a>
+    &nbsp;&nbsp;
+    <a class="btn-secundario" href="#pago">Ver la versión completa</a>
+
+    <!-- Mockup funcional del recordatorio -->
+    <div class="captura">
+      <div class="captura-top">
+        <span class="punto p1"></span><span class="punto p2"></span><span class="punto p3"></span>
+        <span class="captura-titulo">Recordatorio Fiscal — así se ve</span>
+      </div>
+      <div class="captura-cuerpo">
+        <div class="fila-demo">
+          <span class="nombre">📅 Impuesto a la Renta — El Salvador</span>
+          <span class="fecha">Vence en <strong style="color:var(--verde-texto)">12 días</strong></span>
+        </div>
+        <div class="fila-demo">
+          <span class="nombre">📅 IVA Mensual — México</span>
+          <span class="fecha">Vence en <strong style="color:#e3b341">5 días</strong></span>
+        </div>
+        <div class="fila-demo">
+          <span class="nombre">📅 Declaración — Colombia</span>
+          <span class="fecha">Vence en <strong style="color:var(--texto)">30 días</strong></span>
+        </div>
+        <div class="bajas">
+          <span class="chip">🇸🇻 El Salvador</span><span class="chip">🇲🇽 México</span>
+          <span class="chip">🇨🇴 Colombia</span><span class="chip">🇬🇹 Guatemala</span>
+          <span class="chip">🇦🇷 Argentina</span><span class="chip">+ 14 países</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GRATIS ===== -->
+<section id="gratis">
+  <div class="contenedor">
+    <div class="gratis-card">
+      <span class="gratis-tag">GRATIS</span>
+      <h3>Recordatorio de Obligaciones Fiscales</h3>
+      <p style="color:var(--gris)">La herramienta ligera que te avisa de cada vencimiento oficial.</p>
+      <ul class="gratis-bullets">
+        <li><strong>Vencimientos oficiales de impuestos en 19 países</strong></li>
+        <li><strong>100% Gratuito</strong></li>
+        <li><strong>Código abierto</strong></li>
+        <li><strong>Notificaciones automáticas</strong> antes de cada fecha</li>
+        <li>Abre y funciona — sin instalación</li>
+      </ul>
+      <a class="btn-grande" href="https://wa.me/50366924056" target="_blank" rel="noopener">Descargar Gratis</a>
+      <p class="gratis-pie">✅ Gratis · ✅ Código abierto · ✅ Comienza hoy, sin tarjeta</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAGO ===== -->
+<section id="pago">
+  <div class="contenedor">
+    <div class="seccion-titulo">
+      <h2>¿Necesitas más que recordatorios?</h2>
+      <p>Lleva tu trabajo al siguiente nivel con la versión completa.</p>
+    </div>
+
+    <div class="pago-card">
+      <h3>🧾 DescargarFacturas</h3>
+      <p class="subp">El software completo para contadores que quieren automatizar su trabajo.</p>
+
+      <div class="beneficios">
+        <div class="beneficio">
+          <div class="icono">📥</div>
+          <h4>Descarga automática</h4>
+          <p>Baja tus facturas del correo automáticamente, sin copiar y pegar.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">📂</div>
+          <h4>Organización impecable</h4>
+          <p>Archivo por país, año, mes y tipo. Encuentra todo al instante.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">📅</div>
+          <h4>Recordatorios oficiales</h4>
+          <p>Los mismos 19 países de la versión gratuita, incluidos.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">🔔</div>
+          <h4>Recordatorios personalizados</h4>
+          <p>Crea los tuyos: entregas, plazos internos, auditorías y más.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">📤</div>
+          <h4>Exportación a CSV</h4>
+          <p>Listo para tus declaraciones y reportes ante la entidad.</p>
+        </div>
+        <div class="beneficio">
+          <div class="icono">🔁</div>
+          <h4>Actualizaciones y soporte</h4>
+          <p>Mejoras constantes y soporte directo por WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="precio-grid">
+        <div class="precio-caja">
+          <div class="etiqueta">Licencia perpetua</div>
+          <div class="monto">$100</div>
+          <div class="nota">Pago único · 1 año de actualizaciones incluidas</div>
+        </div>
+        <div class="precio-caja destacada">
+          <div class="etiqueta">Renovación anual</div>
+          <div class="monto">$50</div>
+          <div class="nota">Actualizaciones y soporte por año</div>
+        </div>
+      </div>
+
+      <div class="cta-linea">
+        <a class="btn-grande" href="https://wa.me/50366924056?text=Hola%2C%20quiero%20la%20demo%20de%207%20d%C3%ADas%20de%20DescargarFacturas" target="_blank" rel="noopener">Pedir Demo por WhatsApp</a>
+        <p class="nota-demo">🎁 Demo 7 días gratis · sin compromiso</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIDEO ===== -->
+<section id="video">
+  <div class="contenedor">
+    <div class="seccion-titulo">
+      <h2>Míralo en acción</h2>
+      <p>2 minutos y medio para ver cómo transforma tu rutina.</p>
+    </div>
+    <div class="video-card">
+      <div class="video-play">▶</div>
+      <h3>Video demo (2:30)</h3>
+      <p>Descarga automática, organización y recordatorios personalizados. Explicado en claro, sin tecnicismos.</p>
+      <a class="btn-secondary btn-secundario" href="#pago">Quiero ver la demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="contenedor">
+    <div class="seccion-titulo">
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">¿En qué se diferencian la versión gratuita y DescargarFacturas?</div>
+        <div class="faq-a"><div class="faq-a-inner">La gratuita te avisa de los vencimientos oficiales en 19 países. DescargarFacturas incluye todo eso y además: descarga automática de facturas, organización por país/año/mes/tipo, recordatorios personalizados y exportación a CSV.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿La licencia es un pago único?</div>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Pagas <strong>$100 una vez</strong> y la licencia es perpetua. Ese pago incluye 1 año de actualizaciones. Si luego quieres seguir recibiendo mejoras y soporte, la renovación anual es de $50.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cómo pruebo DescargarFacturas antes de comprar?</div>
+        <div class="faq-a"><div class="faq-a-inner">Te doy una <strong>demo gratuita de 7 días</strong>, sin compromiso. Me escribes por WhatsApp, la pruebas con tus propias facturas y decides con calma.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Funciona con mi correo y mi país?</div>
+        <div class="faq-a"><div class="faq-a-inner">Soporta los 19 países principales para recordatorios y correo configurable. Si tu caso es específico, escríbeme y vemos cómo se ajusta a tu flujo.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito instalarlo?</div>
+        <div class="faq-a"><div class="faq-a-inner">No. Es una herramienta de escritorio que abre y funciona en Windows, sin pasos complicados.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MÉTODOS DE PAGO ===== -->
+<section id="pagos">
+  <div class="contenedor">
+    <div class="seccion-titulo">
+      <h2>Métodos de pago</h2>
+      <p>Elige el que te quede más cómodo.</p>
+    </div>
+    <div class="pagos">
+      <div class="pago"><div class="i">💳</div><div class="n">Tarjeta / PayPal</div><div class="d">Compra segura con protección al comprador</div></div>
+      <div class="pago"><div class="i">💵</div><div class="n">Transferencia</div><div class="d">En El Salvador y países vecinos</div></div>
+      <div class="pago"><div class="i">🪙</div><div class="n">Cripto</div><div class="d">USDT, Binance Pay y más</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final" id="cta">
+  <h2>Listo para olvidar el estrés de las fechas</h2>
+  <p>Empieza hoy con la versión gratuita, o prueba DescargarFacturas 7 días sin pagar nada.</p>
+  <a class="btn-grande" href="https://wa.me/50366924056" target="_blank" rel="noopener">Empezar ahora por WhatsApp</a>
+</section>
+
+<footer>
+  © <span id="anio"></span> ObligacionesFiscales · Contacto: <a href="https://wa.me/50366924056" target="_blank" rel="noopener">WhatsApp</a><br>
+  Herramienta para contadores y profesionales de impuestos.
+</footer>
+
+<script>
+  // Año actual dinámico
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  // Acordeón FAQ
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement;
+      const abierto=item.classList.contains('abierto');
+      // cerrar todos
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('abierto');
+        i.querySelector('.faq-a').style.maxHeight=null;
+      });
+      if(!abierto){
+        item.classList.add('abierto');
+        const a=item.querySelector('.faq-a');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>

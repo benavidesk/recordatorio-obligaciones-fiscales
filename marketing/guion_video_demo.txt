@@ -1,0 +1,89 @@
+========================================================
+GUION DE VIDEO DEMO — DescargarFacturas (2:30)
+Versión con diferenciación (gratuito → pago)
+========================================================
+
+ESTRUCTURA:
+- Se conecta al Recordatorio Gratuito (gancho de familiaridad)
+- Presenta el dolor que el gratuito NO cubre (fe-dates propias)
+- Presenta DescargarFacturas como la solución completa
+- Cierra en beneficio + llamado a la acción
+
+--------------------------------------------------------
+[SECCION 1] — 0:00 a 0:20  (20s)
+--------------------------------------------------------
+🎙 HOOK + CONEXIÓN:
+"Si conoces mi Recordatorio de Obligaciones Fiscales, ya sabes
+que te avisa de los vencimientos oficiales en 19 países."
+
+[Visual: portada del Recordatorio Gratuito + mapa de países]
+
+--------------------------------------------------------
+[SECCION 2] — 0:20 a 0:40  (20s)
+--------------------------------------------------------
+🎙 EL DOLOR (sin este paso no vende):
+"Pero hay fechas que no están en ningún calendario oficial...
+¿y si llega la fecha de entregar aquel reporte a un cliente?
+¿Y un plazo interno para la auditoría? ¿Y una fecha propia que
+nadie más te va a recordar?"
+
+[SVisual: calendario con un vencimiento marcado + tono preocupado]
+
+▶ Esta es la clave de la diferenciación: el costo de olvidar.
+
+--------------------------------------------------------
+[SECCION 3] — 0:40 a 1:00  (20s)
+--------------------------------------------------------
+🎙 LA SOLUCIÓN (por eso creé esto):
+"Por eso creé DescargarFacturas. Incluye los recordatorios
+oficiales, y además recordatorios personalizados: tú creas los
+que necesites, con el aviso automático cuando toca."
+
+[Visual: pantalla creando un recordatorio personalizado]
+
+--------------------------------------------------------
+[SECCION 4] — 1:00 a 1:30  (30s)
+--------------------------------------------------------
+🎙 EL PLUS (automatización = ahorro de horas):
+"Y eso es solo el principio. DescargarFacturas descarga
+automáticamente todas tus facturas desde el correo, las organiza
+por país, año, mes y tipo, y te genera reportes en CSV que pasas
+directo a tus declaraciones."
+
+[Visual: correo → descarga automática → carpetas organizadas → CSV]
+
+--------------------------------------------------------
+[SECCION 5] — 1:30 a 2:00  (30s)
+--------------------------------------------------------
+🎙 CIERRE EMOCIONAL (posicionamiento):
+"En resumen: es el software completo para contadores que quieren
+dejar de perder tardes enteras archivando facturas y persiguiendo
+fechas, y empezar a automatizar su trabajo."
+
+[Visual: antes (desorden de papeles) vs después (todo ordenado)]
+
+--------------------------------------------------------
+[SECCION 6] — 2:00 a 2:30  (30s)
+--------------------------------------------------------
+🎙 PRECIO + CTA:
+"Tip: descarga primero el Recordatorio Gratuito — es 100% gratis
+y abre por el recordatorio oficial rápido.
+
+Y si quieres la solución completa, DescargarFacturas está en
+$100 con licencia perpetua e incluye 1 año de actualizaciones.
+Pero antes, te lo dejo probar 7 días cómo tú quieras.
+
+Escríbeme por WhatsApp y te paso la demo. Te muestro paso a paso."
+
+[Visual: logo + $100 + año actualizaciones + botón WhatsApp]
+
+▶ RECORDATORIO: terminar con un CTA claro ("Escríbeme por
+   WhatsApp para la demo").
+
+========================================================
+NOTAS DE GRABACIÓN:
+- Tono: cercano, claro, sin tecnicismos (estilo de Benav).
+- No fijar precio arriba de golpe; deja que la demo hable.
+- El dolor (sección 2) es lo que convierte: dale su tiempo.
+- Una sola idea por sección; cortar ediciones limpias.
+========================================================

@@ -16,7 +16,15 @@ import json, os, subprocess
 RUTA = os.path.dirname(os.path.abspath(__file__))
 CONFIG = os.path.join(RUTA, "config.json")
 TAREA = "AvisosObligacionesFiscales"
+TAREA_INICIO = "AvisosObligacionesFiscalesInicio"
 BAT = os.path.join(RUTA, "ejecutar_avisos.bat")
+EXE_AVISOS = os.path.join(RUTA, "AvisosAutomaticos.exe")
+
+def comando_tarea():
+    """Comando con --notificar para la tarea diaria/ inicio de sesion.
+    Preferimos el exe de avisos (no depende de Python); si no, el .bat."""
+    base = EXE_AVISOS if os.path.exists(EXE_AVISOS) else BAT
+    return "\"{}\" --notificar".format(base)
 
 def main():
     try:
@@ -53,13 +61,20 @@ def main():
         except Exception:
             return "", ""
 
-    # recrear la tarea con la nueva hora (borrar y crear)
+    # recrear las tareas (diaria + inicio de sesion) con la nueva hora
     run_silencioso(["schtasks", "/Delete", "/TN", TAREA, "/F"])
+    run_silencioso(["schtasks", "/Delete", "/TN", TAREA_INICIO, "/F"])
     out, err = run_silencioso([
         "schtasks", "/Create", "/TN", TAREA,
-        "/TR", BAT,
+        "/TR", comando_tarea(),
         "/SC", "DAILY", "/ST", hora_final, "/F",
     ])
+    # tarea al iniciar sesion (por si la PC estaba apagada)
+    run_silencioso(["schtasks", "/Create", "/TN", TAREA_INICIO,
+                    "/TR", comando_tarea(), "/SC", "ONLOGON", "/F"])
+    # asegurar que queden habilitadas
+    run_silencioso(["schtasks", "/Change", "/TN", TAREA, "/ENABLE"])
+    run_silencioso(["schtasks", "/Change", "/TN", TAREA_INICIO, "/ENABLE"])
 
     # verificar
     q, _ = run_silencioso(["schtasks", "/Query", "/TN", TAREA, "/FO", "LIST"])

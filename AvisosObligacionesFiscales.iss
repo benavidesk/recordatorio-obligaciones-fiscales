@@ -26,9 +26,11 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-; El ejecutable principal PyInstaller (onefile funciona) + bases + config + docs
-; NOTA: el build Nuitka (distribucion_nuitka) da segfault al arrancar, NO usar.
+; Ejecutables: GUI de configuracion (PyInstaller) + AvisosAutomaticos.exe (para la
+; tarea programada diaria, NO depende de Python en la maquina del usuario).
 Source: "dist\AvisosObligacionesFiscales.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\AvisosAutomaticos.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "ejecutar_aviso_silencioso.vbs"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bases\*"; DestDir: "{app}\bases"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "config.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "VERSION.json"; DestDir: "{app}"; Flags: ignoreversion

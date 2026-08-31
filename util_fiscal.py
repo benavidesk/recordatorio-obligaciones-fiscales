@@ -5,10 +5,19 @@ util_fiscal.py - Modulo compartido de obligaciones fiscales.
 Centraliza la logica comun usada por recordatorios.py y avisos_automaticos.py
 para evitar duplicacion: cargar bases JSON, listar paises y calcular vencimientos.
 """
-import os, json, glob
+import os, sys, json, glob
 from datetime import date, timedelta
 
-BASES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bases")
+def ruta_base():
+    """Directorio donde viven bases/ y archivos de datos.
+    - Empaquetado (exe): la carpeta donde está el ejecutable.
+    - Script: la carpeta del módulo.
+    """
+    if getattr(sys, "frozen", False):
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.abspath(__file__))
+
+BASES_DIR = os.path.join(ruta_base(), "bases")
 
 def cargar_archivo(path):
     """Carga un JSON; devuelve dict o None si falla."""
