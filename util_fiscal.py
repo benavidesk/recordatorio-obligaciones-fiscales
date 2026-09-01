@@ -144,6 +144,7 @@ def calcular_vencimientos_ventana(data, hoy, dias):
             "dias": (regla.get("dias") or {}).get(did),
             "anual_fijo": (regla.get("anual_fijo") or {}).get(did),
             "trimestral": (regla.get("trimestral") or {}).get(did),
+            "bimensual": (regla.get("bimensual") or {}).get(did),
         }
         f = proximo_vencimiento(oblig, regla_obl, hoy)
         if esta_en_ventana(f, hoy, dias):

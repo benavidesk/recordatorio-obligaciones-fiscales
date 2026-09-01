@@ -2,63 +2,75 @@
   "pais": "Colombia",
   "codigo": "CO",
   "moneda": "COP",
-  "id_contribuyente": "NIT (con DV)",
-  "nota": "Base de obligaciones fiscales de Colombia. Fuente: DIAN (Dirección de Impuestos y Aduanas Nacionales). IVA, retención e ICA mensuales; renta anual. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
-  "dato_especial": "La DIAN suele publicar el calendario tributario anual con fechas de vencimiento por el último dígito del NIT.",
+  "id_contribuyente": "NIT",
+  "nota": "Base de obligaciones fiscales de Colombia. Fuente: DIAN, Decreto 2229 de 2023 (Decreto de Plazos aplicable desde 2024). Desde D.2229/2023 todas las obligaciones principales vencen ESCALONADAS por el último dígito del NIT (días hábiles), NO a día fijo. NOTA HONESTA: el Decreto de Plazos específico de 2027 aún no está publicado; se replica el esquema del D.2229/2023 (días base por dígito + traslado a día hábil).",
+  "ultima_actualizacion": "2026-08-31",
+  "dato_especial": "Colombia se monetiza POR TERMINACION DE NIT: el contador elige su último dígito y ve sus fechas exactas (IVA, retención, renta). Sin dígito, las fechas son por calendario oficial (no se inventan).",
   "obligaciones": [
     {
       "id": "CO-IVA",
-      "nombre": "IVA - Declaración Mensual",
-      "formulario": "IVA mensual",
-      "tipo": "mensual",
-      "descripcion": "Impuesto al Valor Agregado (19%), declaración y pago. Vence según calendario DIAN (por último dígito del NIT)."
+      "nombre": "IVA - Impuesto sobre las Ventas (Formulario 300)",
+      "formulario": "300",
+      "tipo": "bimestral",
+      "descripcion": "IVA bimestral (ingresos >= 92.000 UVT) o cuatrimestral (< 92.000 UVT). Vence el mes siguiente al periodo (mar,may,jul,sep,nov,ene), escalonado por último dígito NIT (1→10, 2→11 ... 0→24 del mes). D.2229/2023."
     },
     {
       "id": "CO-RETENCION",
-      "nombre": "Retención en la Fuente",
-      "formulario": "Retención",
+      "nombre": "Retención en la Fuente (Formulario 350)",
+      "formulario": "350",
       "tipo": "mensual",
-      "descripcion": "Retención en la fuente a título de renta e IVA, declaración y pago mensual."
+      "descripcion": "Agentes de retención y autorretenedores. Vence del 7° al 16° día hábil del mes siguiente según último dígito NIT. Diciembre vence en enero siguiente. D.2229/2023."
     },
     {
-      "id": "CO-ICA",
-      "nombre": "ICA - Industria y Comercio",
-      "formulario": "ICA",
-      "tipo": "mensual",
-      "descripcion": "Impuesto de Industria y Comercio (municipal), declaración según el municipio (bimestral o mensual)."
-    },
-    {
-      "id": "CO-RENTA",
-      "nombre": "Renta - Impuesto sobre la Renta y Complementarios",
-      "formulario": "Renta Anual",
+      "id": "CO-RENTA-PJ",
+      "nombre": "Impuesto de Renta - Personas Jurídicas (F.110)",
+      "formulario": "110",
       "tipo": "anual",
-      "descripcion": "Declaración anual del impuesto de renta y complementarios. Personas jurídicas y naturales."
+      "descripcion": "Declaración y 1a cuota en mayo, 2a cuota en julio, según último dígito NIT. No grandes contribuyentes."
     },
     {
-      "id": "CO-CREE-FORMAL",
-      "nombre": "Impuesto Simple / Formalización (según régimen)",
-      "formulario": "Simple",
+      "id": "CO-RENTA-PN",
+      "nombre": "Impuesto de Renta - Personas Naturales (F.210)",
+      "formulario": "210",
       "tipo": "anual",
-      "descripcion": "Régimen Simple de Tributación (consolidado) para pequeños contribuyentes, si aplica."
+      "descripcion": "7° día hábil de agosto al 17° día hábil de octubre, según los 2 últimos dígitos NIT."
+    },
+    {
+      "id": "CO-SIMPLE",
+      "nombre": "Régimen Simple de Tributación (F.2593/260)",
+      "formulario": "2593/260",
+      "tipo": "bimestral",
+      "descripcion": "Anticipo bimestral F.2593 al mes siguiente al periodo por NIT; declaración anual consolidada F.260 entre el 11° y 15° día hábil de abril por NIT."
     },
     {
       "id": "CO-PILA",
-      "nombre": "Parafiscales y Seguridad Social (PILA)",
+      "nombre": "Seguridad Social (Planilla PILA)",
       "formulario": "PILA",
       "tipo": "mensual",
-      "descripcion": "Aportes a seguridad social (salud, pensión) y parafiscales (SENA, ICBF, cajas) vía PILA."
+      "descripcion": "Pago mes siguiente, escalonado por los últimos 2 dígitos del NIT del empleador (1° al 15° día hábil)."
+    },
+    {
+      "id": "CO-PATRIMONIO",
+      "nombre": "Impuesto al Patrimonio (F.420)",
+      "formulario": "420",
+      "tipo": "anual",
+      "descripcion": "1a cuota en mayo por NIT; 2a cuota en diciembre (fecha única ~14) o 10° día hábil de septiembre según NIT."
     }
   ],
   "reglas_vencimiento": {
-    "dias": {
-      "CO-PILA": -1
+    "dias_fijos": {},
+    "dias_por_digito": {
+      "CO-IVA": {"1":10,"2":11,"3":12,"4":13,"5":16,"6":17,"7":18,"8":19,"9":20,"0":24}
     },
-    "anual_fijo": {
-      "CO-RENTA": null,
-      "CO-CREE-FORMAL": null
+    "bimensual": {
+      "CO-IVA": {
+        "meses": [3, 5, 7, 9, 11, 1],
+        "dia": 10,
+        "escalonado_por_nit": true
+      }
     },
-    "dias_por_calendario_oficial": ["CO-IVA", "CO-RETENCION", "CO-ICA", "CO-PILA", "CO-RENTA", "CO-CREE-FORMAL"],
-    "nota": "Casi todas las obligaciones en Colombia vencen según el calendario DIAN (día variable según el NIT). PILA tiene fechas propias. Verificar dian.gov.co."
+    "anual_fijo": {},
+    "dias_por_calendario_oficial": ["CO-IVA", "CO-RETENCION", "CO-RENTA-PJ", "CO-RENTA-PN", "CO-SIMPLE", "CO-PILA", "CO-PATRIMONIO"],
+    "nota": "Colombia (D.2229/2023): todo lo principal vence escalonado por dígito NIT. IVA bimestral mes siguiente con día por dígito (dias_por_digito). Retención/renta/simple/PILA por ventana de días hábiles según NIT. Decreto 2027 en publicación; se replica el esquema recurrente."
   }
 }

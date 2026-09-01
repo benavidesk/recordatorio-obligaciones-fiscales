@@ -3,57 +3,77 @@
   "codigo": "AR",
   "moneda": "ARS",
   "id_contribuyente": "CUIT",
-  "nota": "Base de obligaciones fiscales de Argentina. Fuente: ARCA (Agencia de Recaudación y Control Aduanero, que sustituyó a AFIP). IVA, Ganancias, retenciones, SUSS. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
-  "dato_especial": "ARCA es la autoridad que reemplazó a AFIP (nombre actualizado). Calendario mensual de vencimientos por CUIT y actividad.",
+  "nota": "Base de obligaciones fiscales de Argentina. Fuente: ARCA (Agencia de Recaudacion y Control Aduanero, que sustituyo a AFIP). Casi todos los vencimientos se escalonan segun el ULTIMO DIGITO del CUIT (no son dia fijo). Para el calendario por digito se usa la tabla de dias base (verificada del calendario 2026 ARCA) + traslado al dia habil. NOTA HONESTA: ARCA aun no publica el calendario 2027 a fecha de actualizacion; las fechas se deducen de la tabla base por digito + dia habil.",
+  "ultima_actualizacion": "2026-08-31",
+  "dato_especial": "Argentina se vende/monetiza POR TERMINACION DE CUIT: el contador elige su ultimo digito y ve sus fechas exactas. Patron de pares de digitos (0-1, 2-3, ...) para IVA, y tercios (0-3, 4-6, 7-9) para autónomos/seguridad social.",
   "obligaciones": [
     {
       "id": "AR-IVA",
-      "nombre": "IVA - Declaración Jurada Mensual",
-      "formulario": "IVA mensual",
+      "nombre": "IVA - Declaración Jurada Mensual (Responsables Inscriptos)",
+      "formulario": "IVA mensual (F.2002)",
       "tipo": "mensual",
-      "descripcion": "Impuesto al Valor Agregado (21%), declaración jurada y pago mensual (DDJJ 731/741). Vence según calendario ARCA."
+      "descripcion": "IVA (21%), presentación y pago mensual. Vence por último dígito de CUIT: dígitos 0-1 día 18, 2-3 día 19, 4-5 día 20, 6-7 día 21, 8-9 día 22 (se traslada a día hábil)."
     },
     {
-      "id": "AR-GANANCIAS",
-      "nombre": "Ganancias - Impuesto a las Ganancias",
-      "formulario": "Ganancias",
+      "id": "AR-GANANCIAS-ANTICIPO",
+      "nombre": "Ganancias - Anticipos Mensuales",
+      "formulario": "Ganancias (F.799)",
       "tipo": "mensual",
-      "descripcion": "Pagos mensuales a cuenta del Impuesto a las Ganancias de las empresas."
+      "descripcion": "Anticipos mensuales del Impuesto a las Ganancias. Por dígito CUIT: 0-3 día 14, 4-6 día 15, 7-9 día 16. El 1er anticipo anual puede vencer día único (~24)."
     },
     {
       "id": "AR-RETENCIONES",
-      "nombre": "Retenciones (Ganancias, IVA, SUSS)",
-      "formulario": "Retenciones",
+      "nombre": "Retenciones y Percepciones (agentes de retención)",
+      "formulario": "Retenciones (RG 2233)",
       "tipo": "mensual",
-      "descripcion": "Retenciones impositivas y de la seguridad social efectuadas a proveedores y trabajadores."
+      "descripcion": "Retenciones de IVA y Ganancias efectuadas por agentes. Día fijo (no por dígito): ~15 del mes siguiente."
     },
     {
       "id": "AR-SUSS",
       "nombre": "SUSS - Seguridad Social (contribuciones patronales)",
-      "formulario": "SUSS",
+      "formulario": "SUSS (F.931)",
       "tipo": "mensual",
-      "descripcion": "Sistema Único de Seguridad Social: aportes y contribuciones patronales/laborales."
+      "descripcion": "Contribuciones a la seguridad social de empleadores. Por dígito CUIT: 0-3 día 9, 4-6 día 10, 7-9 día 11 (pago)."
+    },
+    {
+      "id": "AR-AUTONOMOS",
+      "nombre": "Aporte Mensual de Trabajadores Autónomos",
+      "formulario": "Autónomos (F.711)",
+      "tipo": "mensual",
+      "descripcion": "Aporte mensual de trabajadores autónomos. Por dígito CUIT: 0-3 día 5, 4-6 día 6, 7-9 día 7."
+    },
+    {
+      "id": "AR-MONOTRIBUTO",
+      "nombre": "Monotributo - Pago Mensual",
+      "formulario": "Monotributo (F.2002)",
+      "tipo": "mensual",
+      "descripcion": "Componente impositivo + previsional + obra social. Día base 20 TODOS los dígitos (vencimiento único, se traslada a día hábil)."
     },
     {
       "id": "AR-GANANCIAS-ANUAL",
       "nombre": "Ganancias - Declaración Jurada Anual",
-      "formulario": "Ganancias anual",
+      "formulario": "Ganancias anual (F.711)",
       "tipo": "anual",
-      "descripcion": "Declaración jurada anual del Impuesto a las Ganancias (período fiscal anterior). Según cronograma ARCA."
+      "descripcion": "Declaración jurada anual del Impuesto a las Ganancias (período fiscal anterior). Vence escalonada por dígito CUIT (referencia ~junio del año siguiente)."
     }
   ],
   "reglas_vencimiento": {
     "dias": {
-      "AR-IVA": -1,
-      "AR-GANANCIAS": -1,
-      "AR-RETENCIONES": -1,
-      "AR-SUSS": -1
+      "AR-RETENCIONES": 15
+    },
+    "dias_por_digito": {
+      "AR-IVA": {"0":18,"1":18,"2":19,"3":19,"4":20,"5":20,"6":21,"7":21,"8":22,"9":22},
+      "AR-GANANCIAS-ANTICIPO": {"0":14,"1":14,"2":14,"3":14,"4":15,"5":15,"6":15,"7":16,"8":16,"9":16},
+      "AR-SUSS": {"0":9,"1":9,"2":9,"3":9,"4":10,"5":10,"6":10,"7":11,"8":11,"9":11},
+      "AR-AUTONOMOS": {"0":5,"1":5,"2":5,"3":5,"4":6,"5":6,"6":6,"7":7,"8":7,"9":7}
+    },
+    "dias_fijos_por_digito": {
+      "AR-MONOTRIBUTO": 20
     },
     "anual_fijo": {
       "AR-GANANCIAS-ANUAL": null
     },
-    "dias_por_calendario_oficial": ["AR-IVA", "AR-GANANCIAS", "AR-RETENCIONES", "AR-SUSS", "AR-GANANCIAS-ANUAL"],
-    "nota": "Vencimientos según calendario mensual ARCA por CUIT/actividad (días variables). Verificar arca.gob.ar."
+    "dias_por_calendario_oficial": ["AR-GANANCIAS-ANUAL"],
+    "nota": "Argentina: IVA, ganancias anticipos, SUSS y autónomos vencen por último dígito CUIT (dias_por_digito). Monotributo día base 20 todos. Retenciones día fijo ~15. Ganancias anual escalonada por CUIT. Fuente: calendarios ARCA 2026. 2027 se deduce (día base + día hábil) — verificar cuando ARCA publique el calendario oficial 2027."
   }
 }
