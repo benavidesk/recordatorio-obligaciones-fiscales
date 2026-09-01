@@ -3,57 +3,136 @@
   "codigo": "MX",
   "moneda": "MXN",
   "id_contribuyente": "RFC",
-  "nota": "Base de obligaciones fiscales de México. Fuente: SAT (Servicio de Administración Tributaria). ISR e IVA declaraciones mensuales día 17. Declaración anual ISR abril (física) / personas morales marzo. Aportes/correcciones bienvenidos.",
+  "nota": "Base de obligaciones fiscales de México. Fuente: SAT (CFF, LISR, LIVA, LSS), Resolución Miscelánea y calendario fiscal 2026/2027. Regla general: pagos mensuales (=ISR provisional, IVA definitivo, IEPS, retenciones) vencen el día 17 del mes inmediato posterior; si cae inhábil se recorre al siguiente día hábil (art. 12 CFF). Sexto dígito del RFC otorga 1-5 días hábiles adicionales. Anuales: personas físicas 30-abr, personas morales 31-mar. Aportes/correcciones bienvenidos.",
   "ultima_actualizacion": "2026-08-31",
-  "dato_especial": "Declaraciones mensuales ISR/IVA vencen el día 17 de cada mes. Días inhábiles recorren el plazo al día hábil siguiente.",
+  "dato_especial": "Día 17 es la regla general mensual. INFONAVIT y RCV (retiro/cesantía/vejez) son BIMESTRALES (meses impares), día 17 del mes siguiente al cierre del bimestre — NO mensuales.",
   "obligaciones": [
     {
       "id": "MX-ISR",
-      "nombre": "ISR - Pago Provisional Mensual",
+      "nombre": "ISR - Pago Provisional Mensual (personas físicas y morales)",
       "formulario": "ISR Mensual",
       "tipo": "mensual",
-      "descripcion": "Pago provisional del Impuesto sobre la Renta. Vence el día 17 de cada mes (ingresos del mes anterior)."
+      "descripcion": "Pago provisional del Impuesto sobre la Renta. Vence el día 17 de cada mes (art. 9, 14, 106-111 LISR)."
     },
     {
       "id": "MX-IVA",
-      "nombre": "IVA - Declaración Mensual",
+      "nombre": "IVA - Declaración Mensual Definitiva",
       "formulario": "IVA Mensual",
       "tipo": "mensual",
-      "descripcion": "Impuesto al Valor Agregado (16%), declaración y pago. Vence el día 17 de cada mes."
+      "descripcion": "Impuesto al Valor Agregado (16%), pago definitivo mensual. Vence el día 17 (art. 5, 32 LIVA)."
     },
     {
-      "id": "MX-RET-DIGITALES",
-      "nombre": "Retenciones a plataformas digitales (nuevo 2026)",
-      "formulario": "Retenciones",
+      "id": "MX-IEPS",
+      "nombre": "IEPS - Declaración Mensual",
+      "formulario": "IEPS",
       "tipo": "mensual",
-      "descripcion": "Retención ISR e IVA a personas morales que venden por plataformas digitales de intermediación (desde 2026)."
+      "descripcion": "Impuesto Especial sobre Producción y Servicios, propio o retenido. Vence el día 17."
+    },
+    {
+      "id": "MX-DIOT",
+      "nombre": "DIOT - Declaración Informativa de Operaciones con Terceros",
+      "formulario": "DIOT",
+      "tipo": "mensual",
+      "descripcion": "Informativa de operaciones con terceros. Vence el día 17 (art. 32 LIVA)."
+    },
+    {
+      "id": "MX-RET-SUELDOS",
+      "nombre": "Retención ISR - Sueldos y Salarios",
+      "formulario": "Retención ISR",
+      "tipo": "mensual",
+      "descripcion": "Entero de retenciones de ISR a sueldos del personal. Vence el día 17 (art. 96 LISR)."
+    },
+    {
+      "id": "MX-RET-HONORARIOS",
+      "nombre": "Retención ISR - Honorarios y Arrendamiento",
+      "formulario": "Retención ISR",
+      "tipo": "mensual",
+      "descripcion": "Retención ISR a personas físicas por honorarios profesionales y arrendamiento. Vence el día 17 (art. 106 LISR)."
+    },
+    {
+      "id": "MX-IVA-RET",
+      "nombre": "Retención IVA - Honorarios, Arrendamiento y Transporte",
+      "formulario": "Retención IVA",
+      "tipo": "mensual",
+      "descripcion": "Retención de IVA (pagos a terceros). Vence el día 17 (art. 1-A LIVA)."
+    },
+    {
+      "id": "MX-CUOTAS-IMSS",
+      "nombre": "IMSS - Cuotas Obrero-Patronales",
+      "formulario": "IMSS/SUA",
+      "tipo": "mensual",
+      "descripcion": "Pago de cuotas obrero-patronales IMSS. Vence el día 17 del mes siguiente."
+    },
+    {
+      "id": "MX-INFONAVIT-RCV",
+      "nombre": "INFONAVIT y RCV - Aportaciones",
+      "formulario": "IMSS/SUA",
+      "tipo": "bimestral",
+      "descripcion": "Aportaciones INFONAVIT y RCV (retiro/cesantía/vejez). BIMESTRALES: meses impares, día 17 del mes siguiente al cierre del bimestre."
     },
     {
       "id": "MX-ISR-ANUAL-FISICA",
       "nombre": "ISR - Declaración Anual Personas Físicas",
       "formulario": "Anual ISR física",
       "tipo": "anual",
-      "descripcion": "Declaración anual del ISR de personas físicas (honorarios, actividad empresarial). Vence el 30 de abril."
+      "descripcion": "Declaración anual ISR personas físicas. Vence el 30 de abril."
     },
     {
-      "id": "MX-IMSS",
-      "nombre": "IMSS - Cuotas obrero-patronales",
-      "formulario": "IMSS",
+      "id": "MX-ISR-ANUAL-MORAL",
+      "nombre": "ISR - Declaración Anual Personas Morales",
+      "formulario": "Anual ISR moral",
+      "tipo": "anual",
+      "descripcion": "Declaración anual ISR personas morales (régimen general). Vence el 31 de marzo."
+    },
+    {
+      "id": "MX-RESICO",
+      "nombre": "ISR - Régimen Simplificado de Confianza (RESICO)",
+      "formulario": "RESICO",
       "tipo": "mensual",
-      "descripcion": "Cuotas al Instituto Mexicano del Seguro Social (IMSS) e INFONAVIT sobre la nómina."
+      "descripcion": "Pago mensual ISR definitivo del Régimen Simplificado de Confianza. Vence el día 17. Exento de declaración anual si está al corriente."
+    },
+    {
+      "id": "MX-CONTABILIDAD-ELECT",
+      "nombre": "Contabilidad Electrónica - Envío mensual",
+      "formulario": "Contab. Electrónica",
+      "tipo": "mensual",
+      "descripcion": "Envío de contabilidad electrónica al SAT. Personas morales el 1°-3° día hábil del 2° mes posterior; personas físicas 1°-5°. Regla 2.8.1.2 RMF."
+    },
+    {
+      "id": "MX-ISR-ANUAL-PM-NOFIN",
+      "nombre": "ISR - Anual Personas Morales No Lucrativas",
+      "formulario": "Anual PM no lucrativa",
+      "tipo": "anual",
+      "descripcion": "Declaración anual de personas morales con fines no lucrativos/donatarias. Vence el 15 de febrero. Art. 86 LISR."
+    },
+    {
+      "id": "MX-CONSTANCIA-RET",
+      "nombre": "Constancias de Retenciones y DIM",
+      "formulario": "Constancias/DIM",
+      "tipo": "anual",
+      "descripcion": "Entrega de constancias de retenciones a trabajadores y presentación de la DIM. Vence el 15 de febrero. Art. 99 fracc. III LISR."
     }
   ],
   "reglas_vencimiento": {
     "dias": {
       "MX-ISR": 17,
       "MX-IVA": 17,
-      "MX-RET-DIGITALES": 17,
-      "MX-IMSS": 17
+      "MX-IEPS": 17,
+      "MX-DIOT": 17,
+      "MX-RET-SUELDOS": 17,
+      "MX-RET-HONORARIOS": 17,
+      "MX-IVA-RET": 17,
+      "MX-CUOTAS-IMSS": 17,
+      "MX-RESICO": 17,
+      "MX-CONTABILIDAD-ELECT": -1
     },
     "anual_fijo": {
-      "MX-ISR-ANUAL-FISICA": "04-30"
+      "MX-ISR-ANUAL-FISICA": "04-30",
+      "MX-ISR-ANUAL-MORAL": "03-31",
+      "MX-ISR-ANUAL-PM-NOFIN": "02-15",
+      "MX-CONSTANCIA-RET": "02-15"
     },
-    "dias_por_calendario_oficial": [],
-    "nota": "ISR, IVA, retenciones a plataformas e IMSS día 17 (dato verificado, CFF/art.9 LIVA/art.39 LSS). Declaración anual física 30-abr, personas morales 31-mar. Verificar sat.gob.mx."
+    "dias_por_calendario_oficial": ["MX-CONTABILIDAD-ELECT"],
+    "nota": "ISR, IVA, IEPS, DIOT, retenciones, RESICO e IMSS día 17 (regla mensual, art. 12 CFF, SAT). Anuales: física 30-abr, moral 31-mar, PM no lucrativas 15-feb, constancias/DIM 15-feb. Contabilidad electrónica variable por tipo (PM/PF). INFONAVIT/RCV bimestral (meses impares, día 17). Verificar sat.gob.mx."
   }
 }
