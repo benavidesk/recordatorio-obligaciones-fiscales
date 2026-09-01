@@ -4,7 +4,7 @@
   "moneda": "CLP",
   "id_contribuyente": "RUT",
   "nota": "Base de obligaciones fiscales de Chile. Fuente: SII (Servicio de Impuestos Internos). IVA (F29), Renta (F22) anual, retenciones, cotizaciones previsionales. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "Formulario 29 (IVA y retenciones) se declara en línea; F22 (renta anual) en abril. Calendario SII por tipo de contribuyente.",
   "obligaciones": [
     {
@@ -54,6 +54,6 @@
       "CL-RENTA-ANUAL": null
     },
     "dias_por_calendario_oficial": ["CL-IVA", "CL-RETENCIONES", "CL-PPM", "CL-PREVISIONAL", "CL-RENTA-ANUAL"],
-    "nota": "F29 (IVA) y F22 (renta) según calendario SII. Verificar sii.cl."
+    "nota": "F29 (IVA y retenciones) vence día 12 (papel) o 20 (internet) del mes siguiente según calendario IVA SII (NO por dígito RUT); se maneja por calendario oficial. F22 (renta anual) en abril por dígito RUT. Cotización previsional mensual. Verificar sii.cl."
   }
 }

@@ -3,8 +3,8 @@
   "codigo": "CR",
   "moneda": "CRC",
   "id_contribuyente": "Cédula Jurídica/Física",
-  "nota": "Base de obligaciones fiscales de Costa Rica. Fuente: Hacienda CR (DGT/ATV) y calendario fiscal 2026. IVA (D-104) día 20, ISR, CCSS. Verificar ovitribucr.hacienda.go.cr/calendario-fiscal. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "nota": "Base de obligaciones fiscales de Costa Rica. Fuente: Hacienda CR (DGT/ATV) y calendario fiscal 2026/2027. IVA (D-104) y retenciones (D-108) día 15, ISR anual 15-mar. Verificar ovitribucr.hacienda.go.cr/calendario-fiscal. Aportes/correcciones bienvenidos.",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "Calendario Fiscal CR en ATV (ovitribucr.hacienda.go.cr/calendario-fiscal). Fechas pueden trasladarse si caen en inhábil.",
   "obligaciones": [
     {
@@ -12,7 +12,7 @@
       "nombre": "IVA - Declaración Mensual (D-104)",
       "formulario": "D-104",
       "tipo": "mensual",
-      "descripcion": "Impuesto al Valor Agregado (13%), declaración y pago mensual. Vence el día 20 del mes siguiente (si cae inhábil se traslada)."
+      "descripcion": "Impuesto al Valor Agregado (13%), declaración y pago mensual. Vence el día 15 del mes siguiente (si cae inhábil se traslada al siguiente día hábil)."
     },
     {
       "id": "CR-ISR-RENTA",
@@ -33,7 +33,7 @@
       "nombre": "Retenciones - Impuesto cedular y otras",
       "formulario": "Retenciones",
       "tipo": "mensual",
-      "descripcion": "Retenciones del impuesto cedular de renta del trabajo y otras retenciones (D-108)."
+      "descripcion": "Retenciones del impuesto cedular de renta del trabajo y otras retenciones (D-108). Vence el día 15 del mes siguiente."
     },
     {
       "id": "CR-CCSS",
@@ -52,16 +52,16 @@
   ],
   "reglas_vencimiento": {
     "dias": {
-      "CR-IVA": 20,
+      "CR-IVA": 15,
       "CR-ISR-RENTA": -1,
-      "CR-RETENCIONES": -1,
+      "CR-RETENCIONES": 15,
       "CR-CCSS": -1
     },
     "anual_fijo": {
-      "CR-ISR-ANUAL": null,
+      "CR-ISR-ANUAL": "03-15",
       "CR-PAGOS-PARC": null
     },
-    "dias_por_calendario_oficial": ["CR-ISR-RENTA", "CR-RETENCIONES", "CR-CCSS", "CR-ISR-ANUAL", "CR-PAGOS-PARC"],
-    "nota": "IVA día 20 (dato verificado). ISR/retensiones/CCSS y anual según calendario ATV Hacienda (días variables). Verificar ovitribucr.hacienda.go.cr."
+    "dias_por_calendario_oficial": ["CR-ISR-RENTA", "CR-CCSS", "CR-PAGOS-PARC"],
+    "nota": "IVA y retenciones día 15 (dato verificado). ISR/CCSS y pagos parciales según calendario ATV Hacienda (días variables). ISR anual 15-mar (personas jurídicas). Verificar ovitribucr.hacienda.go.cr."
   }
 }

@@ -4,7 +4,7 @@
   "moneda": "GTQ",
   "id_contribuyente": "NIT",
   "nota": "Base de obligaciones fiscales de Guatemala. Fuente: calendario tributario SAT 2026. Los vencimientos en Guatemala siguen el calendario de la SAT con fechas por dígito verificador del NIT. Este ejemplo usa vencimiento estandar dia 1 (los dias exactos varian por dígito NIT). Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "Calendario SAT por NIT: el vencimiento del IVA/ISR depende del último dígito del NIT del contribuyente. Cada mes el SAT publica las fechas exactas.",
   "obligaciones": [
     {
@@ -66,10 +66,10 @@
       "GT-INTECAP-IRTA": -1
     },
     "anual_fijo": {
-      "GT-RAFAELA-HERENCIA": null,
+      "GT-RAFAELA-HERENCIA": "03-31",
       "GT-BALANZA": null
     },
-    "dias_por_calendario_oficial": ["GT-IVA", "GT-ISR-IND", "GT-ISR-SOC", "GT-IGSS", "GT-INTECAP-IRTA", "GT-RAFAELA-HERENCIA", "GT-BALANZA"],
-    "nota": "Guatemala: casi TODAS las obligaciones vencen según el calendario SAT por dígito verificador del NIT, no en un día fijo. Por eso las marcamos 'por calendario oficial'. El motor demuestra que puede trabajar de ambas formas: día fijo (SV) o por calendario (GT)."
+    "dias_por_calendario_oficial": ["GT-IVA", "GT-ISR-IND", "GT-ISR-SOC", "GT-IGSS", "GT-INTECAP-IRTA", "GT-BALANZA"],
+    "nota": "Guatemala: casi TODAS las obligaciones vencen según el calendario SAT por dígito verificador del NIT, no en un día fijo. Por eso las marcamos 'por calendario oficial'. Excepción: ISR anual (declaración jurada) vence 31-marzo. Verificar portal.sat.gob.gt."
   }
 }

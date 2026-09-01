@@ -4,7 +4,7 @@
   "moneda": "MXN",
   "id_contribuyente": "RFC",
   "nota": "Base de obligaciones fiscales de México. Fuente: SAT (Servicio de Administración Tributaria). ISR e IVA declaraciones mensuales día 17. Declaración anual ISR abril (física) / personas morales marzo. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "Declaraciones mensuales ISR/IVA vencen el día 17 de cada mes. Días inhábiles recorren el plazo al día hábil siguiente.",
   "obligaciones": [
     {
@@ -47,13 +47,13 @@
     "dias": {
       "MX-ISR": 17,
       "MX-IVA": 17,
-      "MX-RET-DIGITALES": -1,
-      "MX-IMSS": -1
+      "MX-RET-DIGITALES": 17,
+      "MX-IMSS": 17
     },
     "anual_fijo": {
       "MX-ISR-ANUAL-FISICA": "04-30"
     },
-    "dias_por_calendario_oficial": ["MX-RET-DIGITALES", "MX-IMSS"],
-    "nota": "ISR/IVA día 17 (dato verificado). Declaración anual física 30-abr. Retenciones digitales e IMSS según calendario SAT."
+    "dias_por_calendario_oficial": [],
+    "nota": "ISR, IVA, retenciones a plataformas e IMSS día 17 (dato verificado, CFF/art.9 LIVA/art.39 LSS). Declaración anual física 30-abr, personas morales 31-mar. Verificar sat.gob.mx."
   }
 }

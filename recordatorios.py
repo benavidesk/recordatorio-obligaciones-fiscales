@@ -73,6 +73,7 @@ def main():
         regla_obl = {
             "dias": (regla.get("dias") or {}).get(did),
             "anual_fijo": (regla.get("anual_fijo") or {}).get(did),
+            "trimestral": (regla.get("trimestral") or {}).get(did),
         }
         fecha = proximo_vencimiento(oblig, regla_obl, hoy, mes, anio)
         if fecha and fecha.year == anio:

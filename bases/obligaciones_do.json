@@ -4,7 +4,7 @@
   "moneda": "DOP",
   "id_contribuyente": "RNC",
   "nota": "Base de obligaciones fiscales de República Dominicana. Fuente: DGII (Dirección General de Impuestos Internos). ITBIS e ISR son las obligaciones principales. Calendario del Contribuyente en dgii.gov.do. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "DGII publica el 'Calendario del Contribuyente' con todas las fechas. Muchos vencimientos por régimen y últimas cifras del RNC.",
   "obligaciones": [
     {
@@ -45,15 +45,15 @@
   ],
   "reglas_vencimiento": {
     "dias": {
-      "DO-ITBIS": -1,
-      "DO-ISR-RET": -1,
-      "DO-ISR-ANTICIPOS": -1,
-      "DO-TSS": -1
+      "DO-ITBIS": 20,
+      "DO-ISR-RET": 10,
+      "DO-ISR-ANTICIPOS": 15,
+      "DO-TSS": 3
     },
     "anual_fijo": {
-      "DO-ISR-ANUAL": null
+      "DO-ISR-ANUAL": "03-31"
     },
-    "dias_por_calendario_oficial": ["DO-ITBIS", "DO-ISR-RET", "DO-ISR-ANTICIPOS", "DO-TSS", "DO-ISR-ANUAL"],
-    "nota": "ITBIS/ISR/TSS según Calendario del Contribuyente de la DGII (días variables por régimen). IR anual según calendario DGII. Verificar dgii.gov.do."
+    "dias_por_calendario_oficial": [],
+    "nota": "ITBIS día 20, retenciones ISR día 10, anticipos ISR día 15, TSS día 3 (mes siguiente, si inhábil al siguiente día hábil). ISR anual: física IR-1 31-mar, sociedades IR-2 30-abr. Fuente: Calendario del Contribuyente DGII 2026/2027. Verificar dgii.gov.do."
   }
 }

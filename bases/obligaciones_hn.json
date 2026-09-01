@@ -4,7 +4,7 @@
   "moneda": "HNL",
   "id_contribuyente": "RTN",
   "nota": "Base de obligaciones fiscales de Honduras. Fuente: calendario fiscal SAR 2026 (PwC, sdv, nompli). ISV 15%, ISR, IHSS. Vencimientos pueden variar por tipo de contribuyente y régimen; el día 10 del mes siguiente es estándar para mensuales. Verificar sar.gob.hn. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "Calendario SAR: algunos vencimientos dependen del último dígito del RTN o son trasladados al día hábil siguiente si caen en fin de semana/feriado.",
   "obligaciones": [
     {
@@ -61,15 +61,15 @@
     "dias": {
       "HN-ISV": 10,
       "HN-ISR-RET": 10,
-      "HN-IHSS": 10,
-      "HN-RAP": 10,
+      "HN-IHSS": -1,
+      "HN-RAP": -1,
       "HN-ISR-PAC": -1
     },
     "anual_fijo": {
-      "HN-ISR-ANUAL": null,
+      "HN-ISR-ANUAL": "04-30",
       "HN-IAN": null
     },
-    "dias_por_calendario_oficial": ["HN-ISR-PAC", "HN-ISR-ANUAL", "HN-IAN"],
-    "nota": "Mensuales estándar día 10. Trimestral/anual según calendario SAR (varían por régimen y RTN). Verificar sar.gob.hn."
+    "dias_por_calendario_oficial": ["HN-IHSS", "HN-RAP", "HN-ISR-PAC", "HN-IAN"],
+    "nota": "ISV y retenciones ISR día 10 (SAR). ISR anual 30-abril. IHSS/RAP según calendario SAR (sin día fijo inequívoco). Pagos a cuenta ISR (PAC) trimestrales 30-jun/30-sep/31-dic. Verificar sar.gob.hn."
   }
 }

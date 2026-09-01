@@ -4,7 +4,7 @@
   "moneda": "EUR",
   "id_contribuyente": "NIF",
   "nota": "Base de obligaciones fiscales de España. Fuente: AEAT (Agencia Estatal de Administración Tributaria). IRPF, IVA, Impuesto de Sociedades, retenciones, Seguridad Social. Aportes/correcciones bienvenidos.",
-  "ultima_actualizacion": "2026-08-23",
+  "ultima_actualizacion": "2026-08-31",
   "dato_especial": "España (UE) tiene un calendario fiscal anual publicado por la AEAT. IVA trimestral/mensual según régimen; IRPF por trimestre.",
   "obligaciones": [
     {
@@ -68,11 +68,15 @@
     "dias": {
       "ES-SS": -1
     },
+    "trimestral": {
+      "ES-IVA": { "meses": [1, 4, 7, 10], "dia": 20, "dias_por_mes": { "1": 30 } },
+      "ES-RETENCIONES": { "meses": [1, 4, 7, 10], "dia": 20 }
+    },
     "anual_fijo": {
-      "ES-IRPF-ANUAL": null,
+      "ES-IRPF-ANUAL": "06-30",
       "ES-SOC-ANUAL": null
     },
-    "dias_por_calendario_oficial": ["ES-IVA", "ES-IVA-INTRA", "ES-IRPF-TRIM", "ES-RETENCIONES", "ES-SOC-IS", "ES-SS", "ES-IRPF-ANUAL", "ES-SOC-ANUAL"],
-    "nota": "España: tributarios trimestrales/anuales según calendario AEAT (días del mes siguientes al trimestre/periodo). IRPF anual campaña abril-junio. IS anual octubre. Verificar sede.agenciatributaria.gob.es."
+    "dias_por_calendario_oficial": ["ES-IVA-INTRA", "ES-IRPF-TRIM", "ES-SOC-IS", "ES-SS", "ES-SOC-ANUAL"],
+    "nota": "IVA trimestral Modelo 303: día 20 (abr/jul/oct), día 30 en enero (4T). Retenciones Modelo 111: día 20 los 4 trimestres. IRPF anual Modelo 100: 30-junio. Modelo 200 IS y SS: según calendario AEAT. Fuente: AEAT 2026/2027. Verificar sede.agenciatributaria.gob.es."
   }
 }
